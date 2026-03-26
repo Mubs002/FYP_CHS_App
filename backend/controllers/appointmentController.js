@@ -2,7 +2,7 @@ const appointmentModel = require('../models/appointmentModel');
 
 const getAppointments = async (req, res) => {
     try {
-        const appointments = await appointmentModel.getAllappointments();
+        const appointments = await appointmentModel.getAllAppointments();
         res.json(appointments);
     } catch (err) {
         console.error(err);

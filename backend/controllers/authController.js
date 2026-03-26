@@ -40,7 +40,7 @@ const loginUser = async (req, res) => {
             return res.status(401).send('User not found');
         }
 
-        const vaidPassword = await bcrypt.compare(password, user.password_hash);
+        const validPassword = await bcrypt.compare(password, user.password_hash);
 
         if(!validPassword) {
             return res.status(401).send('Invalid password');
