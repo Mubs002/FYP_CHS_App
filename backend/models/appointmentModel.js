@@ -27,5 +27,5 @@ const createAppointment = async (patient_id, professional_id, reason_for_visit) 
 };
 
 module.exports = {
-    getAllappointments, createAppointment
+    getAllAppointments, createAppointment
 };

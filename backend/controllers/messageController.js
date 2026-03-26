@@ -48,7 +48,7 @@ const addMessage = async (req, res) => {
 const updateMessageRead = async (req, res) => {
     try {
         const { messageId } = req.params;
-        const updateMessage = await messageModel.markMessageAsRead(messageId);
+        const updatedMessage = await messageModel.markMessageAsRead(messageId);
         res.json(updatedMessage);
     } catch (err) {
         console.error(err);
@@ -58,7 +58,7 @@ const updateMessageRead = async (req, res) => {
 
 module.exports = {
     getThreads,
-    addThreads,
+    addThread,
     getMessages,
     addMessage,
     updateMessageRead
