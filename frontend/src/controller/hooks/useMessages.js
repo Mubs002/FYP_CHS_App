@@ -8,7 +8,7 @@ export function useThreads() {
 
     useEffect(() => {
         fetchThreads();
-    }, []);
+    }, []); 
     const fetchThreads = async () => {
         setLoading(true);
         setError(null);
