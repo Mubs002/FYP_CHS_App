@@ -252,3 +252,39 @@
 .btn-outline-dark:hover {
   border-color: #9ca3af;
 }
+
+/* ===== RESPONSIVE - smaller screens ===== */
+
+@media (max-width: 768px) {
+  .hero {
+    padding: 60px 24px 0;
+  }
+
+  .hero-title {
+    font-size: 40px;
+  }
+
+  .features {
+    padding: 60px 24px;
+  }
+
+  /* stack the features into one column on small screens */
+  .features-grid {
+    grid-template-columns: 1fr;
+    gap: 28px;
+  }
+
+  .role-section {
+    padding: 60px 24px;
+  }
+
+  .role-cards {
+    flex-direction: column;
+    align-items: center;
+  }
+
+  .role-card {
+    width: 100%;
+    max-width: 320px;
+  }
+}
