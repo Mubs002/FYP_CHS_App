@@ -59,3 +59,24 @@ function FeaturesSection() {
     { icon: '📋', text: 'Complete health records management' },
     { icon: '💊', text: 'Digital prescriptions and medication tracking' },
   ];
+
+  return (
+    <section className="features">
+      <h2 className="features-title">Everything you need in one place</h2>
+      <p className="features-subtitle">
+        Comprehensive care that connects your physical and mental wellbeing
+      </p>
+
+      {/* i looped through the features array to render each row */}
+      <div className="features-grid">
+        {features.map((item, index) => (
+          <div className="feature-item" key={index}>
+            <div className="feature-icon-box">{item.icon}</div>
+            <span className="feature-text">{item.text}</span>
+            <span className="feature-check">✓</span>
+          </div>
+        ))}
+      </div>
+    </section>
+  );
+}
