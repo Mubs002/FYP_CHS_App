@@ -2,6 +2,7 @@ import { BrowserRouter, Routes, Route, Navigate } from "react-router-dom";
 import { AuthProvider } from "./model/context/AuthContext";
 import { useAuth } from "./model/context/AuthContext";
 
+import LandingPage from './view/pages/LandingPage';
 import LoginPage from './view/pages/LoginPage';
 import RegisterPage from './view/pages/RegisterPage';
 import DashboardPage from './view/pages/DashboardPage';
@@ -14,7 +15,7 @@ import MentalHealthPage from './view/pages/MentalHealthPage';
 function ProtectedRoute({ children }) {
   const { user } = useAuth();
 
-  if(!user) {
+  if (!user) {
     return <Navigate to="/login" />;
   }
   return children;
@@ -23,9 +24,8 @@ function ProtectedRoute({ children }) {
 function AppRoutes() {
   return (
     <Routes>
-      {/* public page which anyone can visit */}
-      <Route path ="/login" element={<LoginPage />} />
-      <Route path ="/register" element={<RegisterPage />} />
+      {/* the home landing page anyone can see this */}
+      <Route path="/" element={<LandingPage />} />
 
       { /* Protected pages which only logged in users can visit */}
       <Route path ="/dashboard" element={
