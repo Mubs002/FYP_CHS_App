@@ -188,3 +188,32 @@
   text-align: left;
   transition: border-color 0.2s, background 0.2s;
 }
+
+.role-card-selected {
+  border-color: #0D9488;
+  background: #F0FDFA;
+}
+
+.role-icon {
+  margin-bottom: 16px;
+}
+
+.role-name {
+  font-size: 18px;
+  font-weight: 700;
+  color: #1a2332;
+  margin: 0 0 8px;
+}
+
+.role-desc {
+  font-size: 14px;
+  color: #6b7280;
+  line-height: 1.6;
+  margin: 0;
+}
+
+.role-buttons {
+  display: flex;
+  justify-content: center;
+  gap: 16px;
+}
