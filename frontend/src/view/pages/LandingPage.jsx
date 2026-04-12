@@ -108,3 +108,34 @@ function RoleSection() {
             Access healthcare services, book appointments, and manage your health records
           </p>
         </div>
+
+        {/* doctor card - clicking sets selected to doctor */}
+        <div
+          className={`role-card ${selected === 'doctor' ? 'role-card-selected' : ''}`}
+          onClick={() => setSelected('doctor')}
+        >
+          <div className="role-icon">
+            <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="#9ca3af" strokeWidth="2">
+              <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z" />
+            </svg>
+          </div>
+          <h3 className="role-name">Doctor</h3>
+          <p className="role-desc">
+            Manage appointments, view patient records, and create prescriptions
+          </p>
+        </div>
+      </div>
+
+      <div className="role-buttons">
+        {/* i passed the selected role as state so the register page can read it */}
+        <button
+          className="btn-teal"
+          onClick={() => navigate('/register', { state: { role: selected } })}
+        >
+          Create Account
+        </button>
+        <Link to="/login" className="btn-outline-dark">Sign In</Link>
+      </div>
+    </section>
+  );
+}
