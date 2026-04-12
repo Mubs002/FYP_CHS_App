@@ -217,3 +217,20 @@
   justify-content: center;
   gap: 16px;
 }
+
+/* solid dark teal buton for create account */
+.btn-teal {
+  padding: 14px 32px;
+  background: #0D9488;
+  color: white;
+  border: none;
+  border-radius: 8px;
+  font-size: 15px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: background 0.2s;
+}
+
+.btn-teal:hover {
+  background: #0F766E;
+}
