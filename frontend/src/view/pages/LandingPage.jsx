@@ -12,3 +12,5 @@ export default function LandingPage() {
     </div>
   );
 }
+
+// the big top section with the teal to blue gradient background
