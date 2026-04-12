@@ -48,3 +48,14 @@ function HeroSection() {
     </section>
   );
 }
+
+// section showing the 6 things the platform offers
+function FeaturesSection() {
+  const features = [
+    { icon: '🗓', text: 'Book appointments for physical & mental health' },
+    { icon: '🧠', text: 'AI-powered symptom checker with medication suggestions' },
+    { icon: '💚', text: 'Therapy sessions and mood tracking' },
+    { icon: '💬', text: 'Real-time chat with healthcare providers' },
+    { icon: '📋', text: 'Complete health records management' },
+    { icon: '💊', text: 'Digital prescriptions and medication tracking' },
+  ];
