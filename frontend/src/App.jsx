@@ -27,8 +27,9 @@ function AppRoutes() {
       {/* the home landing page anyone can see this */}
       <Route path="/" element={<LandingPage />} />
 
-      { /* Protected pages which only logged in users can visit */}
-      <Route path ="/dashboard" element={
+      {/* Public pages which anyone can visit */}
+      <Route path="/login" element={<LoginPage />} />
+      <Route path="/register" element={<RegisterPage />} />
         <ProtectedRoute><DashboardPage /></ProtectedRoute>
         } />
 
