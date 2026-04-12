@@ -3,3 +3,13 @@
   font-family: 'Segoe UI', system-ui, sans-serif;
   color: #1a2332;
 }
+
+/* gradient goes from teal on the left to blue on the right */
+.hero {
+  background: linear-gradient(to right, #00D4AA, #4A90E2);
+  padding: 80px 60px 0;
+  position: relative;
+  min-height: 65vh;
+  display: flex;
+  align-items: flex-start;
+}
