@@ -151,3 +151,22 @@
   font-weight: 700;
   margin-left: 8px;
 }
+
+.role-section {
+  background: #F8FAFC;
+  padding: 80px 60px;
+  text-align: center;
+}
+
+.role-title {
+  font-size: 36px;
+  font-weight: 800;
+  color: #1a2332;
+  margin: 0 0 10px;
+}
+
+.role-subtitle {
+  font-size: 15px;
+  color: #6b7280;
+  margin: 0 0 40px;
+}
