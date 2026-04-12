@@ -30,20 +30,23 @@ function AppRoutes() {
       {/* Public pages which anyone can visit */}
       <Route path="/login" element={<LoginPage />} />
       <Route path="/register" element={<RegisterPage />} />
+
+      {/* protected pages only logged in users can visit */}
+      <Route path="/dashboard" element={
         <ProtectedRoute><DashboardPage /></ProtectedRoute>
-        } />
+      } />
 
-        <Route path ="/appointments" element={
+      <Route path="/appointments" element={
         <ProtectedRoute><AppointmentsPage /></ProtectedRoute>
-        } />
+      } />
 
-        <Route path ="/health-records" element={
+      <Route path="/health-records" element={
         <ProtectedRoute><HealthRecordsPage /></ProtectedRoute>
-        } />
-        
-        <Route path ="/mental-health" element={
+      } />
+
+      <Route path="/mental-health" element={
         <ProtectedRoute><MentalHealthPage /></ProtectedRoute>
-        } />
+      } />
 
       {/* anything else redircts to home */}
       <Route path="*" element={<Navigate to="/" />} />
