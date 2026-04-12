@@ -44,8 +44,8 @@ function AppRoutes() {
         <ProtectedRoute><MentalHealthPage /></ProtectedRoute>
         } />
 
-        { /* if someone visits home page send them to login */}
-        <Route path="*" element={<Navigate to="/login" />} />
+      {/* anything else redircts to home */}
+      <Route path="*" element={<Navigate to="/" />} />
     </Routes>
   );
 }
