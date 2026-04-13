@@ -25,4 +25,33 @@ export default function RegisterPage() {
   // disables button while the request is in progress
   const [loading, setLoading] = useState(false);
 
+  async function handleSubmit(e) {
+    // stopping the form from refreshing the page on submit
+    e.preventDefault();
+    setError('');
+    setLoading(true);
+
+    try {
+      // sending all the form data to the backend register route
+      await registerUser({
+        role,
+        first_name: firstName,
+        last_name: lastName,
+        email,
+        password,
+      });
+
+      // redirected to login after registration
+      navigate('/login');
+    } catch (err) {
+      //if email is already taken
+      if (err.response?.data === 'Email already exists') {
+        setError('That email is already registered. Try signing in instead.');
+      } else {
+        setError('Something went wrong. Please try again.');
+      }
+    } finally {
+      setLoading(false);
+    }
+  }
 }
