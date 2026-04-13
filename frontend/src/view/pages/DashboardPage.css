@@ -187,3 +187,44 @@
   color: #0D9488;
   margin: 0 0 6px;
 }
+
+.stat-label {
+  font-size: 13px;
+  color: #6b7280;
+  margin: 0;
+}
+
+/* recent appointmnets section */
+.recent-section {
+  background: white;
+  border-radius: 12px;
+  padding: 28px;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05);
+}
+
+/* title and view all link on recent appointment section */
+.recent-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 20px;
+}
+
+.recent-title {
+  font-size: 17px;
+  font-weight: 700;
+  color: #1a2332;
+  margin: 0;
+}
+
+/* the view all link */
+.recent-view-all {
+  font-size: 13px;
+  color: #0D9488;
+  text-decoration: none;
+  font-weight: 600;
+}
+
+.recent-view-all:hover {
+  text-decoration: underline;
+}
