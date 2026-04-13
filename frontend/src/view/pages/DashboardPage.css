@@ -78,3 +78,24 @@
 .sidebar-link-icon {
   font-size: 16px;
 }
+
+/* logout buton */
+.sidebar-logout {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  padding: 10px 24px;
+  background: transparent;
+  border: none;
+  color: #9ca3af;
+  font-size: 14px;
+  font-weight: 500;
+  cursor: pointer;
+  text-align: left;
+  transition: color 0.2s;
+  margin-top: 8px;
+}
+
+.sidebar-logout:hover {
+  color: #f87171;
+}
