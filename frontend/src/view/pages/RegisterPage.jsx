@@ -1,4 +1,12 @@
-// placeholder - will be built in the next step
+import { useState } from 'react';
+import { Link, useNavigate, useLocation } from 'react-router-dom';
+import { registerUser } from '../../model/api/api';
+import './RegisterPage.css';
+
 export default function RegisterPage() {
-  return <div style={{ padding: '40px', textAlign: 'center' }}>Register Page - Coming Soon</div>;
+  const navigate = useNavigate();
+
+  // reading the role that was passed from the landing page role selection
+  const location = useLocation();
+  const passedRole = location.state?.role || 'patient';
 }
