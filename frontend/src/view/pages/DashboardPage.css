@@ -302,3 +302,39 @@
   color: #6b7280;
   white-space: nowrap;
 }
+
+@media (max-width: 768px) {
+  /* i stacked the sidebar above the content on small screens */
+  .dashboard-layout {
+    flex-direction: column;
+  }
+
+  .sidebar {
+    width: 100%;
+    min-width: unset;
+    flex-direction: row;
+    flex-wrap: wrap;
+    padding: 12px;
+    gap: 8px;
+  }
+
+  .sidebar-logo {
+    padding-bottom: 0;
+    width: 100%;
+  }
+
+  .sidebar-nav {
+    flex-direction: row;
+    flex-wrap: wrap;
+    padding: 0;
+  }
+
+  .dashboard-main {
+    padding: 24px 16px;
+  }
+
+  /* the stat cards stack into one column on small screens */
+  .stats-row {
+    grid-template-columns: 1fr;
+  }
+}
