@@ -1,0 +1,26 @@
+/* the ful login page takes up the whole screen height */
+.login-page {
+  min-height: 100vh;
+  background: #F8FAFC;
+  display: flex;
+  flex-direction: column;
+}
+
+/* teal bar across the top of the page */
+.login-header {
+  background: linear-gradient(to right, #00D4AA, #4A90E2);
+  padding: 18px 40px;
+}
+
+/* the back arrow*/
+.login-back-link {
+  color: white;
+  text-decoration: none;
+  font-size: 14px;
+  font-weight: 500;
+  opacity: 0.9;
+}
+
+.login-back-link:hover {
+  opacity: 1;
+}
