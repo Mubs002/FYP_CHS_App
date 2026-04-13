@@ -122,3 +122,22 @@
   color: #1a2332;
   margin: 0;
 }
+
+/* the coloured pill showing the users role */
+.role-badge {
+  padding: 6px 16px;
+  border-radius: 999px;
+  font-size: 13px;
+  font-weight: 600;
+}
+
+/* patient badge is teal and doctor badge is blue */
+.role-badge-patient {
+  background: #CCFBF1;
+  color: #0D9488;
+}
+
+.role-badge-doctor {
+  background: #DBEAFE;
+  color: #2563EB;
+}
