@@ -94,4 +94,83 @@ export default function RegisterPage() {
               Doctor
             </button>
           </div>
+
+          {/* red error box only when there is an error */}
+          {error && (
+            <div className="register-error">
+              {error}
+            </div>
+          )}
+
+          <form onSubmit={handleSubmit} className="register-form">
+
+            <div className="form-row">
+              <div className="form-group">
+                <label className="form-label">First name</label>
+                <input
+                  type="text"
+                  className="form-input"
+                  placeholder="John"
+                  value={firstName}
+                  onChange={(e) => setFirstName(e.target.value)}
+                  required
+                />
+              </div>
+              <div className="form-group">
+                <label className="form-label">Last name</label>
+                <input
+                  type="text"
+                  className="form-input"
+                  placeholder="Smith"
+                  value={lastName}
+                  onChange={(e) => setLastName(e.target.value)}
+                  required
+                />
+              </div>
+            </div>
+
+            <div className="form-group">
+              <label className="form-label">Email address</label>
+              <input
+                type="email"
+                className="form-input"
+                placeholder="you@example.com"
+                value={email}
+                onChange={(e) => setEmail(e.target.value)}
+                required
+              />
+            </div>
+
+            <div className="form-group">
+              <label className="form-label">Password</label>
+              <input
+                type="password"
+                className="form-input"
+                placeholder="Create a password"
+                value={password}
+                onChange={(e) => setPassword(e.target.value)}
+                required
+              />
+            </div>
+
+            {/* the create account buton disables while loading */}
+            <button
+              type="submit"
+              className="register-btn"
+              disabled={loading}
+            >
+              {loading ? 'Creating account...' : 'Create Account'}
+            </button>
+          </form>
+
+          {/* link back to login if the user already has an account */}
+          <p className="register-login-link">
+            Already have an account?{' '}
+            <Link to="/login" className="register-link">Sign in</Link>
+          </p>
+
+        </div>
+      </div>
+    </div>
+  );
 }
