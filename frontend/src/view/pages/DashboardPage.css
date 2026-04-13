@@ -99,3 +99,26 @@
 .sidebar-logout:hover {
   color: #f87171;
 }
+
+/* main content */
+
+.dashboard-main {
+  flex: 1;
+  padding: 36px 40px;
+  overflow-y: auto;
+}
+
+/* top bar with the page title and role*/
+.dashboard-topbar {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 28px;
+}
+
+.dashboard-heading {
+  font-size: 26px;
+  font-weight: 800;
+  color: #1a2332;
+  margin: 0;
+}
