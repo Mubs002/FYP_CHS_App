@@ -109,10 +109,10 @@ function RoleSection() {
           </p>
         </div>
 
-        {/* doctor card - clicking sets selected to doctor */}
+        {/* professional card - clicking sets selected to professional */}
         <div
-          className={`role-card ${selected === 'doctor' ? 'role-card-selected' : ''}`}
-          onClick={() => setSelected('doctor')}
+          className={`role-card ${selected === 'professional' ? 'role-card-selected' : ''}`}
+          onClick={() => setSelected('professional')}
         >
           <div className="role-icon">
             <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="#9ca3af" strokeWidth="2">

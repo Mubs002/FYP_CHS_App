@@ -88,8 +88,8 @@ export default function RegisterPage() {
             </button>
             <button
               type="button"
-              className={`role-toggle-btn ${role === 'doctor' ? 'role-toggle-active' : ''}`}
-              onClick={() => setRole('doctor')}
+              className={`role-toggle-btn ${role === 'professional' ? 'role-toggle-active' : ''}`}
+              onClick={() => setRole('professional')}
             >
               Doctor
             </button>

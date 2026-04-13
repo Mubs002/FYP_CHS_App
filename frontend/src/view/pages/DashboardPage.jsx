@@ -88,7 +88,7 @@ function MainContent() {
       <div className="dashboard-topbar">
         <h1 className="dashboard-heading">Dashboard</h1>
         <span className={`role-badge role-badge-${user.role}`}>
-          {user.role === 'doctor' ? '👨‍⚕️ Doctor' : '🧑 Patient'}
+          {user.role === 'professional' ? '👨‍⚕️ Doctor' : '🧑 Patient'}
         </span>
       </div>
 
@@ -111,7 +111,7 @@ function MainContent() {
           <p className="stat-label">Recent Activity</p>
         </div>
         <div className="stat-card">
-          <p className="stat-number">{user.role === 'doctor' ? '👨‍⚕️' : '🧑'}</p>
+          <p className="stat-number">{user.role === 'professional' ? '👨‍⚕️' : '🧑'}</p>
           <p className="stat-label">Role: {user.role}</p>
         </div>
       </div>
