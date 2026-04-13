@@ -24,3 +24,48 @@
 .login-back-link:hover {
   opacity: 1;
 }
+
+/* centers the white card on the page vertically and horizontally*/
+.login-card-wrapper {
+  flex: 1;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 40px 20px;
+}
+
+/*white card that has the login form */
+.login-card {
+  background: white;
+  border-radius: 16px;
+  padding: 48px 40px;
+  width: 100%;
+  max-width: 420px;
+  box-shadow: 0 4px 24px rgba(0, 0, 0, 0.08);
+  text-align: center;
+}
+
+/*shield icon at the top of the card */
+.login-icon {
+  width: 64px;
+  height: 64px;
+  background: #CCFBF1;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin: 0 auto 20px;
+}
+
+.login-title {
+  font-size: 26px;
+  font-weight: 800;
+  color: #1a2332;
+  margin: 0 0 8px;
+}
+
+.login-subtitle {
+  font-size: 14px;
+  color: #6b7280;
+  margin: 0 0 28px;
+}
