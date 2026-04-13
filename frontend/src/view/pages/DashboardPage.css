@@ -1,0 +1,6 @@
+.dashboard-layout {
+  display: flex;
+  min-height: 100vh;
+  background: #F8FAFC;
+  font-family: 'Segoe UI', system-ui, sans-serif;
+}
