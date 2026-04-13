@@ -250,3 +250,20 @@
   color: #6b7280;
   font-size: 14px;
 }
+
+/* booking an appointment button */
+.btn-teal-small {
+  display: inline-block;
+  margin-top: 12px;
+  padding: 10px 20px;
+  background: #0D9488;
+  color: white;
+  border-radius: 8px;
+  font-size: 14px;
+  font-weight: 600;
+  text-decoration: none;
+}
+
+.btn-teal-small:hover {
+  background: #0F766E;
+}
