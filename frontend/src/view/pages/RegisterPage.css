@@ -189,3 +189,14 @@
 .register-link:hover {
   text-decoration: underline;
 }
+
+@media (max-width: 480px) {
+  .register-card {
+    padding: 36px 24px;
+  }
+
+  /* i stacked the name fields on small screens */
+  .form-row {
+    grid-template-columns: 1fr;
+  }
+}
