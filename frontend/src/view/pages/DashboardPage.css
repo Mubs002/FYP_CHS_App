@@ -228,3 +228,25 @@
 .recent-view-all:hover {
   text-decoration: underline;
 }
+
+.dashboard-loading {
+  font-size: 14px;
+  color: #6b7280;
+  text-align: center;
+  padding: 20px 0;
+}
+
+.dashboard-error {
+  font-size: 14px;
+  color: #DC2626;
+  text-align: center;
+  padding: 20px 0;
+}
+
+/* messagee shown when there are no appointments */
+.no-appointments {
+  text-align: center;
+  padding: 32px 0;
+  color: #6b7280;
+  font-size: 14px;
+}
