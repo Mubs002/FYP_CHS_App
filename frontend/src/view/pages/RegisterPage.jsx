@@ -54,4 +54,44 @@ export default function RegisterPage() {
       setLoading(false);
     }
   }
+
+  return (
+    <div className="register-page">
+
+      {/* teal banner at the top */}
+      <div className="register-header">
+        <Link to="/" className="register-back-link">← Back to home</Link>
+      </div>
+
+      {/* white card in the centre of the page with the form inside */}
+      <div className="register-card-wrapper">
+        <div className="register-card">
+
+          {/* shield icon */}
+          <div className="register-icon">
+            <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="#0D9488" strokeWidth="2">
+              <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z" />
+            </svg>
+          </div>
+
+          <h1 className="register-title">Create Account</h1>
+          <p className="register-subtitle">Join CHS to manage your health</p>
+
+          {/* role togglee */}
+          <div className="role-toggle">
+            <button
+              type="button"
+              className={`role-toggle-btn ${role === 'patient' ? 'role-toggle-active' : ''}`}
+              onClick={() => setRole('patient')}
+            >
+              Patient
+            </button>
+            <button
+              type="button"
+              className={`role-toggle-btn ${role === 'doctor' ? 'role-toggle-active' : ''}`}
+              onClick={() => setRole('doctor')}
+            >
+              Doctor
+            </button>
+          </div>
 }
