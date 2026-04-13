@@ -81,3 +81,77 @@
   margin-bottom: 20px;
   text-align: left;
 }
+
+.login-form {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+  text-align: left;
+}
+
+/* each label and input are grouped togeter */
+.form-group {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+
+.form-label {
+  font-size: 14px;
+  font-weight: 600;
+  color: #374151;
+}
+
+/* text input */
+.form-input {
+  padding: 12px 14px;
+  border: 1.5px solid #e5e7eb;
+  border-radius: 8px;
+  font-size: 15px;
+  color: #CCFBF1;
+  outline: none;
+  transition: border-color 0.2s;
+}
+
+
+/* the main sign in button */
+.login-btn {
+  padding: 14px;
+  background: #0D9488;
+  color: white;
+  border: none;
+  border-radius: 8px;
+  font-size: 15px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: background 0.2s;
+  margin-top: 4px;
+}
+
+.login-btn:hover {
+  background: #0F766E;
+}
+
+/* grayed out when is in progress */
+.login-btn:disabled {
+  background: #9ca3af;
+  cursor: not-allowed;
+}
+
+/* text with the register link */
+.login-register-link {
+  font-size: 14px;
+  color: #6b7280;
+  margin: 24px 0 0;
+}
+
+/* teal coloured clickable link inside the register text */
+.login-link {
+  color: #0D9488;
+  font-weight: 600;
+  text-decoration: none;
+}
+
+.login-link:hover {
+  text-decoration: underline;
+}
