@@ -117,3 +117,75 @@
   gap: 20px;
   text-align: left;
 }
+
+/* puts first name and last name side by side */
+.form-row {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 16px;
+}
+
+.form-group {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+
+.form-label {
+  font-size: 14px;
+  font-weight: 600;
+  color: #374151;
+}
+
+/* text input box */
+.form-input {
+  padding: 12px 14px;
+  border: 1.5px solid #e5e7eb;
+  border-radius: 8px;
+  font-size: 15px;
+  color: #CCFBF1;
+  outline: none;
+  transition: border-color 0.2s;
+}
+
+/* thee main create account button */
+.register-btn {
+  padding: 14px;
+  background: #0D9488;
+  color: white;
+  border: none;
+  border-radius: 8px;
+  font-size: 15px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: background 0.2s;
+  margin-top: 4px;
+}
+
+.register-btn:hover {
+  background: #0F766E;
+}
+
+/* grayed out when in progress */
+.register-btn:disabled {
+  background: #9ca3af;
+  cursor: not-allowed;
+}
+
+/* below the form, the sign in link */
+.register-login-link {
+  font-size: 14px;
+  color: #6b7280;
+  margin: 24px 0 0;
+}
+
+/* teal coloured clickable link inside the sign in text */
+.register-link {
+  color: #0D9488;
+  font-weight: 600;
+  text-decoration: none;
+}
+
+.register-link:hover {
+  text-decoration: underline;
+}
