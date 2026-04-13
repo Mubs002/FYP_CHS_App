@@ -56,3 +56,45 @@
   justify-content: center;
   margin: 0 auto 20px;
 }
+
+.register-title {
+  font-size: 26px;
+  font-weight: 800;
+  color: #1a2332;
+  margin: 0 0 8px;
+}
+
+.register-subtitle {
+  font-size: 14px;
+  color: #6b7280;
+  margin: 0 0 24px;
+}
+
+/* the two role buttons */
+.role-toggle {
+  display: inline-flex;
+  background: #F3F4F6;
+  border-radius: 8px;
+  padding: 4px;
+  margin-bottom: 24px;
+}
+
+/* eeach role button*/
+.role-toggle-btn {
+  padding: 8px 24px;
+  border: none;
+  border-radius: 6px;
+  font-size: 14px;
+  font-weight: 600;
+  cursor: pointer;
+  background: transparent;
+  color: #6b7280;
+  transition: background 0.2s color 0.2s;
+}
+
+/* active role button */
+.role-toggle-active {
+  background: white;
+  color: #0D9488;
+  box-shadow: 0 1px 4px rgba(0, 0, 0, 0.1);
+}
