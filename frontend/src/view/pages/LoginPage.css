@@ -155,3 +155,10 @@
 .login-link:hover {
   text-decoration: underline;
 }
+
+@media (max-width: 480px) {
+  /* made the card take more of the screen on small devices */
+  .login-card {
+    padding: 36px 24px;
+  }
+}
