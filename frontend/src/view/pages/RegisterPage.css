@@ -1,0 +1,58 @@
+/* the full register page takes up the whole screen height */
+.register-page {
+  min-height: 100vh;
+  background: #F8FAFC;
+  display: flex;
+  flex-direction: column;
+}
+
+/* teal bar across the top */
+.register-header {
+  background: linear-gradient(to right, #00D4AA, #4A90E2);
+  padding: 18px 40px;
+}
+
+/* the back arrow link in header */
+.register-back-link {
+  color: white;
+  text-decoration: none;
+  font-size: 14px;
+  font-weight: 500;
+  opacity: 0.9;
+}
+
+.register-back-link:hover {
+  opacity: 1;
+}
+
+/* centers the white card on the page vertically and horizontally */
+.register-card-wrapper {
+  flex: 1;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 40px 20px;
+}
+
+/*the register form */
+.register-card {
+  background: white;
+  border-radius: 16px;
+  padding: 48px 40px;
+  width: 100%;
+  max-width: 480px;
+  box-shadow: 0 4px 24px rgba(0, 0, 0, 0.08);
+  text-align: center;
+}
+
+/* shield icon*/
+.register-icon {
+  width: 64px;
+  height: 64px;
+  background: #CCFBF1;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin: 0 auto 20px;
+}
