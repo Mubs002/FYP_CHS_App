@@ -25,6 +25,14 @@ export const updateAppointment = (id, data) => api.put(`/appointments/${id}`, da
 // i added this so the frontend can send accept or decline to the backend
 export const updateAppointmentStatus = (id, status) => api.put(`/appointments/${id}/status`, { status });
 
+// Health Records
+export const getHealthRecords = (role, user_id) => api.get(`/health-records?role=${role}&user_id=${user_id}`);
+
+// i used FormData here because the request contains a file upload
+export const addHealthRecord = (formData) => api.post('/health-records', formData);
+export const shareHealthRecord = (data) => api.post('/health-records/share', data);
+export const getSharedProfessionals = (patient_id) => api.get(`/health-records/shared/${patient_id}`);
+
 //msgs
 export const getThreads = () => api.get('/threads');
 export const addThread = (data) => api.post('/threads', data);
