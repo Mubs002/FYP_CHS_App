@@ -20,6 +20,11 @@ const registerUser = async (req, res) => {
             email,
             hashedPassword
         );
+
+        // i created a patient profile row automaticaly when the role is patient
+        if (role === 'patient') {
+            await userModel.createPatientProfile(user.user_id);
+        }
         res.json(user);
     } catch (err) {
         if (err.code === '23505') {
