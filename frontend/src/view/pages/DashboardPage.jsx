@@ -133,8 +133,39 @@ function PendingRequestsSection({ requests, updateStatus }) {
       ))}
     </div>
   );
+}
+
+// section shown to patients with their requests and current status
+function MyRequestsSection({ requests }) {
+  return (
+    <div className="recent-section">
+      <div className="recent-header">
+        <h3 className="recent-title">My Appointment Requests</h3>
+        <Link to="/appointments" className="recent-view-all">Book new →</Link>
       </div>
 
-    </main>
+      {requests.length === 0 && (
+        <div className="no-appointments">
+          <p>No requests made yet.</p>
+          <Link to="/appointments" className="btn-teal-small">Book an appointment</Link>
+        </div>
+      )}
+
+      {/* each request row with a colour coded status badge */}
+      {requests.map((appt) => (
+        <div className="appointment-row" key={appt.appointment_id}>
+          <div className="appt-info">
+            <p className="appt-reason">{appt.reason_for_visit}</p>
+            <p className="appt-names">
+              {appt.appointment_type} · {new Date(appt.scheduled_start).toLocaleDateString()}
+            </p>
+          </div>
+          {/* i used different colours for each status to make it clear */}
+          <span className={`status-badge status-${appt.status}`}>
+            {appt.status}
+          </span>
+        </div>
+      ))}
+    </div>
   );
 }
