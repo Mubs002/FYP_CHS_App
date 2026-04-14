@@ -150,4 +150,128 @@ function RecordCard({ record, userRole }) {
     </div>
   );
 }
+
+// the form professionals use to add a new health record
+function AddRecordForm({ professionalId, createRecord, onDone }) {
+  const [patientId, setPatientId] = useState('');
+  const [category, setCategory] = useState('physical');
+  const [title, setTitle] = useState('');
+  const [description, setDescription] = useState('');
+  const [diagnosis, setDiagnosis] = useState('');
+  const [treatmentPlan, setTreatmentPlan] = useState('');
+  const [recordDate, setRecordDate] = useState('');
+  const [isSensitive, setIsSensitive] = useState(false);
+
+  // i stored the actual file object the user picked
+  const [file, setFile] = useState(null);
+  const [submitting, setSubmitting] = useState(false);
+  const [formError, setFormError] = useState('');
+
+  async function handleSubmit(e) {
+    e.preventDefault();
+    setFormError('');
+    setSubmitting(true);
+
+    try {
+      // i used formdata as reequest includes a file upload
+      const formData = new FormData();
+      formData.append('patient_id', patientId);
+      formData.append('record_category', category);
+      formData.append('title', title);
+      formData.append('description', description);
+      formData.append('diagnosis', diagnosis);
+      formData.append('treatment_plan', treatmentPlan);
+      formData.append('created_by_professional_id', professionalId);
+      formData.append('record_date', recordDate);
+      formData.append('is_sensitive', isSensitive);
+
+      if (file) {
+        formData.append('file', file);
+      }
+
+      await createRecord(formData);
+      onDone();
+    } catch (err) {
+      setFormError('Could not save the record. Please check the details.');
+    } finally {
+      setSubmitting(false);
+    }
+  }
+
+  return (
+    <div className="booking-form-card">
+      <h3 className="booking-form-title">Add Health Record</h3>
+
+      {formError && <p className="dashboard-error">{formError}</p>}
+
+      <form onSubmit={handleSubmit} className="booking-form">
+
+        <div className="form-row">
+          <div className="form-group">
+            <label className="form-label">Patient ID</label>
+            <input type="number" className="form-input" placeholder="Enter patient user ID"
+              value={patientId} onChange={(e) => setPatientId(e.target.value)} required />
+          </div>
+          <div className="form-group">
+            <label className="form-label">Category</label>
+            <select className="form-input" value={category} onChange={(e) => setCategory(e.target.value)}>
+              <option value="physical">Physical</option>
+              <option value="mental">Mental</option>
+            </select>
+          </div>
+        </div>
+
+        <div className="form-row">
+          <div className="form-group">
+            <label className="form-label">Title</label>
+            <input type="text" className="form-input" placeholder="e.g. Annual checkup"
+              value={title} onChange={(e) => setTitle(e.target.value)} required />
+          </div>
+          <div className="form-group">
+            <label className="form-label">Record date</label>
+            <input type="date" className="form-input"
+              value={recordDate} onChange={(e) => setRecordDate(e.target.value)} required />
+          </div>
+        </div>
+
+        <div className="form-group">
+          <label className="form-label">Description</label>
+          <textarea className="form-input form-textarea" placeholder="General notes about the visit"
+            value={description} onChange={(e) => setDescription(e.target.value)} />
+        </div>
+
+        <div className="form-group">
+          <label className="form-label">Diagnosis</label>
+          <textarea className="form-input form-textarea" placeholder="Diagnosis details"
+            value={diagnosis} onChange={(e) => setDiagnosis(e.target.value)} />
+        </div>
+
+        <div className="form-group">
+          <label className="form-label">Treatment plan</label>
+          <textarea className="form-input form-textarea" placeholder="Treatment plan details"
+            value={treatmentPlan} onChange={(e) => setTreatmentPlan(e.target.value)} />
+        </div>
+
+        {/* the file upload input accepts any file type */}
+        <div className="form-group">
+          <label className="form-label">Attach file (optional)</label>
+          <input type="file" className="form-input"
+            onChange={(e) => setFile(e.target.files[0])} />
+        </div>
+
+        {/* the sensitive checkbox marks the record as private */}
+        <div className="form-check">
+          <input type="checkbox" id="sensitive" checked={isSensitive}
+            onChange={(e) => setIsSensitive(e.target.checked)} />
+          <label htmlFor="sensitive" className="form-label">Mark as sensitive</label>
+        </div>
+
+        <button type="submit" className="login-btn" disabled={submitting}>
+          {submitting ? 'Saving...' : 'Save Record'}
+        </button>
+      </form>
+    </div>
+  );
+}
+
 }
