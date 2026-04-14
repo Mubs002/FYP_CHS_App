@@ -84,4 +84,70 @@ function HealthRecordsContent() {
     </main>
   );
 }
+
+// each individual health record shown as a card
+function RecordCard({ record, userRole }) {
+  // i used this to expand or collapse the full details of a record
+  const [expanded, setExpanded] = useState(false);
+
+  return (
+    <div className="record-card">
+      <div className="record-card-header" onClick={() => setExpanded(!expanded)}>
+        <div className="record-left">
+          <span className="record-category-badge">{record.record_category}</span>
+          <p className="record-title">{record.title}</p>
+          <p className="record-meta">
+            {record.record_date}
+            {userRole === 'professional' && record.patient_name && ` · Patient: ${record.patient_name}`}
+            {userRole === 'patient' && record.professional_name && ` · Dr. ${record.professional_name}`}
+          </p>
+        </div>
+        <span className="record-expand-icon">{expanded ? '▲' : '▼'}</span>
+      </div>
+
+      {/* expanded section shows all the record details */}
+      {expanded && (
+        <div className="record-details">
+          {record.description && (
+            <div className="record-field">
+              <p className="record-field-label">Description</p>
+              <p className="record-field-value">{record.description}</p>
+            </div>
+          )}
+          {record.diagnosis && (
+            <div className="record-field">
+              <p className="record-field-label">Diagnosis</p>
+              <p className="record-field-value">{record.diagnosis}</p>
+            </div>
+          )}
+          {record.treatment_plan && (
+            <div className="record-field">
+              <p className="record-field-label">Treatment Plan</p>
+              <p className="record-field-value">{record.treatment_plan}</p>
+            </div>
+          )}
+
+          {/* if a file was attached i showed a download link */}
+          {record.file_path && (
+            <div className="record-field">
+              <p className="record-field-label">Attached File</p>
+              <a
+                href={`http://localhost:3000/uploads/${record.file_path}`}
+                target="_blank"
+                rel="noreferrer"
+                className="record-file-link"
+              >
+                📎 View / Download File
+              </a>
+            </div>
+          )}
+
+          {record.is_sensitive && (
+            <span className="sensitive-badge">🔒 Sensitive Record</span>
+          )}
+        </div>
+      )}
+    </div>
+  );
+}
 }
