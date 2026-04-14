@@ -59,3 +59,23 @@ const shareRecord = async (patient_id, professional_id) => {
     );
     return result.rows[0];
 };
+
+// i fetched all professionals a patient has shared their records with
+const getSharedProfessionals = async (patient_id) => {
+    const result = await pool.query(
+        `SELECT c.*, u.first_name AS professional_name, u.last_name AS professional_last_name
+         FROM consents c
+         JOIN users u ON c.professional_id = u.user_id
+         WHERE c.patient_id = $1 AND c.is_granted = true`,
+        [patient_id]
+    );
+    return result.rows;
+};
+
+module.exports = {
+    getRecordsByPatient,
+    getRecordsByProfessional,
+    createRecord,
+    shareRecord,
+    getSharedProfessionals
+};
