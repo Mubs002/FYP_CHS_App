@@ -109,3 +109,82 @@ function ProfileSection({ userId }) {
     </div>
   );
 }
+
+// changing passsword section
+function PasswordSection({ userId }) {
+  const [currentPassword, setCurrentPassword] = useState('');
+  const [newPassword, setNewPassword] = useState('');
+  const [confirmPassword, setConfirmPassword] = useState('');
+  const [saving, setSaving] = useState(false);
+  const [success, setSuccess] = useState('');
+  const [error, setError] = useState('');
+
+  async function handleSubmit(e) {
+    e.preventDefault();
+    setSuccess('');
+    setError('');
+
+    // i checked the new passwords match before sending to the backend
+    if (newPassword !== confirmPassword) {
+      setError('New passwords do not match.');
+      return;
+    }
+
+    setSaving(true);
+
+    try {
+      // sent current and new password to the backend to update
+      await updatePassword(userId, {
+        current_password: currentPassword,
+        new_password: newPassword,
+      });
+
+      setSuccess('Password changed successfully.');
+      setCurrentPassword('');
+      setNewPassword('');
+      setConfirmPassword('');
+    } catch (err) {
+      if (err.response?.status === 401) {
+        setError('Current password is incorrect.');
+      } else {
+        setError('Could not change password. Please try again.');
+      }
+    } finally {
+      setSaving(false);
+    }
+  }
+
+  return (
+    <div className="settings-card">
+      <h3 className="settings-card-title">Change Password</h3>
+      <p className="settings-card-subtitle">Enter your current password then choose a new one</p>
+
+      {success && <p className="settings-success">{success}</p>}
+      {error && <p className="dashboard-error">{error}</p>}
+
+      <form onSubmit={handleSubmit} className="booking-form">
+        <div className="form-group">
+          <label className="form-label">Current password</label>
+          <input type="password" className="form-input" placeholder="Enter current password"
+            value={currentPassword} onChange={(e) => setCurrentPassword(e.target.value)} required />
+        </div>
+
+        <div className="form-group">
+          <label className="form-label">New password</label>
+          <input type="password" className="form-input" placeholder="Enter new password"
+            value={newPassword} onChange={(e) => setNewPassword(e.target.value)} required />
+        </div>
+
+        <div className="form-group">
+          <label className="form-label">Confirm new password</label>
+          <input type="password" className="form-input" placeholder="Re enter new password"
+            value={confirmPassword} onChange={(e) => setConfirmPassword(e.target.value)} required />
+        </div>
+
+        <button type="submit" className="login-btn settings-btn" disabled={saving}>
+          {saving ? 'Updating...' : 'Change Password'}
+        </button>
+      </form>
+    </div>
+  );
+}
