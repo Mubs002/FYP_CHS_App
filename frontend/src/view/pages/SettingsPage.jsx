@@ -52,3 +52,24 @@ function ProfileSection({ userId }) {
     }
     loadUser();
   }, [userId]);
+
+  async function handleSubmit(e) {
+    e.preventDefault();
+    setSaving(true);
+    setSuccess('');
+    setError('');
+
+    try {
+      // sent the updated name and email to the backend
+      await updateProfile(userId, { first_name: firstName, last_name: lastName, email });
+      setSuccess('Profile updated successfully.');
+    } catch (err) {
+      if (err.response?.data === 'Email already in use') {
+        setError('That email is already taken.');
+      } else {
+        setError('Could not update profile. Please try again.');
+      }
+    } finally {
+      setSaving(false);
+    }
+  }
