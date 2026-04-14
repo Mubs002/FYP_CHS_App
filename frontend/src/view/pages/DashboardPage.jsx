@@ -85,11 +85,14 @@ function MainContent() {
         />
       )}
 
-        {/* loading message while the data is being fetched */}
-        {loading && <p className="dashboard-loading">Loading appointments...</p>}
+      {/* patients see all their requests with the current status */}
+      {user.role === 'patient' && (
+        <MyRequestsSection requests={myRequests} />
+      )}
 
-        {/* error message if the fetch failed */}
-        {error && <p className="dashboard-error">{error}</p>}
+    </main>
+  );
+}
 
         {/* message if there are no appointments yet */}
         {!loading && !error && recentAppointments.length === 0 && (
