@@ -1,0 +1,54 @@
+import { useState, useEffect } from 'react';
+import { useAuth } from '../../model/context/AuthContext';
+import { getUser, updateProfile, updatePassword } from '../../model/api/api';
+import Sidebar from '../components/Sidebar';
+import './SettingsPage.css';
+
+export default function SettingsPage() {
+  return (
+    <div className="dashboard-layout">
+      <Sidebar />
+      <SettingsContent />
+    </div>
+  );
+}
+
+function SettingsContent() {
+  const { user } = useAuth();
+
+  return (
+    <main className="dashboard-main">
+      <div className="dashboard-topbar">
+        <h1 className="dashboard-heading">Settings</h1>
+      </div>
+
+      {/* profile amd password sections on top of each other */}
+      <ProfileSection userId={user.user_id} />
+      <PasswordSection userId={user.user_id} />
+    </main>
+  );
+}
+
+// the section where users can update their name and email
+function ProfileSection({ userId }) {
+  const [firstName, setFirstName] = useState('');
+  const [lastName, setLastName] = useState('');
+  const [email, setEmail] = useState('');
+  const [saving, setSaving] = useState(false);
+  const [success, setSuccess] = useState('');
+  const [error, setError] = useState('');
+
+  useEffect(() => {
+    // i fetched the current user info to pre fill the form fields
+    async function loadUser() {
+      try {
+        const res = await getUser(userId);
+        setFirstName(res.data.first_name);
+        setLastName(res.data.last_name);
+        setEmail(res.data.email);
+      } catch (err) {
+        setError('Could not load user info.');
+      }
+    }
+    loadUser();
+  }, [userId]);
