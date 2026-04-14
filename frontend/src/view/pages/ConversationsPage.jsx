@@ -90,4 +90,123 @@ function ConversationsContent() {
     </main>
   );
 }
+
+// the form used by both patients and professionals to start a new conversation
+function NewThreadForm({ onCreate, userId, role }) {
+  const [otherId, setOtherId] = useState('');
+  const [submitting, setSubmitting] = useState(false);
+  const [error, setError] = useState('');
+
+  // i set the label based on role so each user knows who to enter the id for
+  const placeholder = role === 'patient' ? 'Enter professional ID' : 'Enter patient ID';
+
+  async function handleSubmit(e) {
+    e.preventDefault();
+    setError('');
+    setSubmitting(true);
+
+    try {
+      // i built the thread data differently depending on who is starting the chat
+      const threadData = role === 'patient'
+        ? { patient_id: userId, professional_id: Number(otherId) }
+        : { patient_id: Number(otherId), professional_id: userId };
+
+      await onCreate(threadData);
+      setOtherId('');
+    } catch (err) {
+      setError('Could not start conversation');
+    } finally {
+      setSubmitting(false);
+    }
+  }
+
+  return (
+    <div className="mh-new-thread">
+      <h3 className="mh-section-title">New Conversation</h3>
+      {error && <p className="dashboard-error">{error}</p>}
+      <form onSubmit={handleSubmit} className="mh-new-form">
+        <input
+          type="number"
+          className="form-input"
+          placeholder={placeholder}
+          value={otherId}
+          onChange={(e) => setOtherId(e.target.value)}
+          required
+        />
+        <button type="submit" className="login-btn mh-start-btn" disabled={submitting}>
+          {submitting ? 'Starting...' : 'Start Chat'}
+        </button>
+      </form>
+    </div>
+  );
+}
+
+// the chat panel that shows messages and the send message box
+function ChatPanel({ thread, currentUserId }) {
+  const { messages, send, error } = useMessages(thread.thread_id);
+  const [messageBody, setMessageBody] = useState('');
+  const [sending, setSending] = useState(false);
+
+  async function handleSend(e) {
+    e.preventDefault();
+    if (!messageBody.trim()) return;
+    setSending(true);
+
+    // this sends the current users id and the message text to the hook
+    await send(currentUserId, messageBody);
+    setMessageBody('');
+    setSending(false);
+  }
+
+  return (
+    <div className="mh-chat-panel">
+      {/* shows who the conversation is with at the top */}
+      <div className="mh-chat-header">
+        {currentUserId === thread.patient_id
+          ? `${thread.professional_first_name} ${thread.professional_last_name}`
+          : `${thread.patient_first_name} ${thread.patient_last_name}`}
+      </div>
+
+      {error && <p className="dashboard-error">{error}</p>}
+
+      <div className="mh-messages">
+        {messages.length === 0 && (
+          <p className="mh-no-messages">No messages yet. Say hello!</p>
+        )}
+
+        {messages.map((msg) => {
+          // i used the sender id to decide if the bubble should go left or right
+          const isMine = msg.sender_user_id === currentUserId;
+
+          return (
+            <div key={msg.message_id} className={`mh-bubble-row ${isMine ? 'mh-bubble-row-mine' : ''}`}>
+              <div className={`mh-bubble ${isMine ? 'mh-bubble-mine' : 'mh-bubble-theirs'}`}>
+                {!isMine && (
+                  <span className="mh-bubble-sender">{msg.first_name} {msg.last_name}</span>
+                )}
+                <p className="mh-bubble-text">{msg.message_body}</p>
+                <span className="mh-bubble-time">
+                  {new Date(msg.sent_at).toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' })}
+                </span>
+              </div>
+            </div>
+          );
+        })}
+      </div>
+
+      {/* the text box and send button at the bottom of the chat */}
+      <form onSubmit={handleSend} className="mh-send-form">
+        <input
+          type="text"
+          className="form-input mh-message-input"
+          placeholder="Type a message..."
+          value={messageBody}
+          onChange={(e) => setMessageBody(e.target.value)}
+        />
+        <button type="submit" className="login-btn mh-send-btn" disabled={sending}>
+          Send
+        </button>
+      </form>
+    </div>
+  );
 }
