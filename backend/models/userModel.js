@@ -29,10 +29,11 @@ const createPatientProfile = async (userId) => {
 };
 
 // i added this so a professional_profiles gets created when a professional registers
+// i used the userId in the license number so it is unique for every professional
 const createProfessionalProfile = async (userId) => {
     await pool.query(
-        `INSERT INTO professional_profiles (professional_id, specialism, license_number) VALUES ($1, 'General', 'TEMP001')`,
-        [userId]
+        `INSERT INTO professional_profiles (professional_id, specialism, license_number) VALUES ($1, 'General', $2)`,
+        [userId, `TEMP-${userId}`]
     );
 };
 
