@@ -1,0 +1,170 @@
+/* the two buttons in the top right are going to be side by side */
+.topbar-buttons {
+  display: flex;
+  gap: 12px;
+}
+
+.records-list {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+/* each health record is a white clickable card */
+.record-card {
+  background: white;
+  border-radius: 12px;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05);
+  overflow: hidden;
+}
+
+/* the top row of the card that is always visible */
+.record-card-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 20px 24px;
+  cursor: pointer;
+}
+
+.record-card-header:hover {
+  background: #F8FAFC;
+}
+
+.record-left {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+
+/* cateegory pill */
+.record-category-badge {
+  display: inline-block;
+  background: #CCFBF1;
+  color: #0D9488;
+  font-size: 12px;
+  font-weight: 600;
+  padding: 3px 10px;
+  border-radius: 999px;
+  width: fit-content;
+  margin-bottom: 4px;
+}
+
+.record-title {
+  font-size: 16px;
+  font-weight: 700;
+  color: #1a2332;
+  margin: 0;
+}
+
+/* the date and doctor or patient name below the title */
+.record-meta {
+  font-size: 13px;
+  color: #6b7280;
+  margin: 0;
+}
+
+/*arrow icon  */
+.record-expand-icon {
+  font-size: 12px;
+  color: #9ca3af;
+}
+
+/* the expanded details section below the header */
+.record-details {
+  padding: 0 24px 20px;
+  border-top: 1px solid #f3f4f6;
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+  margin-top: 4px;
+}
+
+.record-field {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+
+.record-field-label {
+  font-size: 12px;
+  font-weight: 700;
+  color: #9ca3af;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+  margin: 0;
+}
+
+.record-field-value {
+  font-size: 14px;
+  color: #374151;
+  margin: 0;
+  line-height: 1.6;
+}
+
+/* the download link for attached files */
+.record-file-link {
+  font-size: 14px;
+  color: #0D9488;
+  font-weight: 600;
+  text-decoration: none;
+}
+
+.record-file-link:hover {
+  text-decoration: underline;
+}
+
+/* the red sensitive badge shown on private records */
+.sensitive-badge {
+  display: inline-block;
+  background: #FEF2F2;
+  color: #DC2626;
+  font-size: 12px;
+  font-weight: 600;
+  padding: 4px 12px;
+  border-radius: 999px;
+  width: fit-content;
+}
+
+/* the green success message shown after sharing */
+.share-success {
+  background: #DCFCE7;
+  color: #16A34A;
+  border-radius: 8px;
+  padding: 10px 14px;
+  font-size: 14px;
+  font-weight: 600;
+  margin-bottom: 16px;
+}
+
+/* the section listing professionals the patient already shared with */
+.shared-list {
+  margin-top: 20px;
+  border-top: 1px solid #f3f4f6;
+  padding-top: 16px;
+}
+
+.shared-list-title {
+  font-size: 13px;
+  font-weight: 700;
+  color: #6b7280;
+  margin: 0 0 10px;
+}
+
+.shared-item {
+  font-size: 14px;
+  color: #374151;
+  margin: 0 0 6px;
+}
+
+/* the checkbox and label for marking a record as sensitive */
+.form-check {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.form-textarea {
+  resize: vertical;
+  min-height: 80px;
+}
