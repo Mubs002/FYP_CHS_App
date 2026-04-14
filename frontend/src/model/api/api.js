@@ -25,6 +25,11 @@ export const updateAppointment = (id, data) => api.put(`/appointments/${id}`, da
 // i added this so the frontend can send accept or decline to the backend
 export const updateAppointmentStatus = (id, status) => api.put(`/appointments/${id}/status`, { status });
 
+// Settings
+export const getUser = (id) => api.get(`/user/${id}`);
+export const updateProfile = (id, data) => api.put(`/user/${id}/profile`, data);
+export const updatePassword = (id, data) => api.put(`/user/${id}/password`, data);
+
 // Health Records
 export const getHealthRecords = (role, user_id) => api.get(`/health-records?role=${role}&user_id=${user_id}`);
 
