@@ -43,11 +43,17 @@ const updateAppointment = async (appointment_id, data) => {
 
     return result.rows[0];
 };
+
+// i added this so professionals can accept or decline an appointment request
+const updateAppointmentStatus = async (appointment_id, status) => {
+    const result = await pool.query(
+        `UPDATE appointments SET status = $1 WHERE appointment_id = $2 RETURNING *`,
+        [status, appointment_id]
     );
 
     return result.rows[0];
 };
 
 module.exports = {
-    getAllAppointments, createAppointment
+    getAllAppointments, createAppointment, updateAppointment, updateAppointmentStatus
 };
