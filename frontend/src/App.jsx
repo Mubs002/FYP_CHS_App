@@ -9,6 +9,7 @@ import DashboardPage from './view/pages/DashboardPage';
 import AppointmentsPage from './view/pages/AppointmentsPage';
 import HealthRecordsPage from './view/pages/HealthRecordsPage';
 import MentalHealthPage from './view/pages/MentalHealthPage';
+import SettingsPage from './view/pages/SettingsPage';
 
 //Checing if user is logged in and if not sends them to login page
 
@@ -46,6 +47,10 @@ function AppRoutes() {
 
       <Route path="/mental-health" element={
         <ProtectedRoute><MentalHealthPage /></ProtectedRoute>
+      } />
+
+      <Route path="/settings" element={
+        <ProtectedRoute><SettingsPage /></ProtectedRoute>
       } />
 
       {/* anything else redircts to home */}
