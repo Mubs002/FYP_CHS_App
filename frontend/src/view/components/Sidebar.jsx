@@ -49,8 +49,8 @@ export default function Sidebar() {
           Health Records
         </Link>
         <Link to="/mental-health" className={`sidebar-link ${isActive('/mental-health') ? 'sidebar-link-active' : ''}`}>
-          <span className="sidebar-link-icon">💚</span>
-          Mental Health
+          <span className="sidebar-link-icon">💭</span>
+          Conversations
         </Link>
         <Link to="/settings" className={`sidebar-link ${isActive('/settings') ? 'sidebar-link-active' : ''}`}>
           <span className="sidebar-link-icon">⚙️</span>
