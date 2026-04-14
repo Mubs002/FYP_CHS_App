@@ -278,4 +278,91 @@ function BookingForm({ user, createAppointment, onBooked }) {
     </div>
   );
 }
+
+//eedit form shown to professionals on accepted appointments
+function EditForm({ appt, editAppointment, onDone }) {
+  const [appointmentType, setAppointmentType] = useState(appt.appointment_type || 'online');
+  const [healthCategory, setHealthCategory] = useState(appt.health_category || 'physical');
+
+  // pre filled the start and end times with what was already saved
+  const [scheduledStart, setScheduledStart] = useState(
+    appt.scheduled_start ? new Date(appt.scheduled_start).toISOString().slice(0, 16) : ''
+  );
+  const [scheduledEnd, setScheduledEnd] = useState(
+    appt.scheduled_end ? new Date(appt.scheduled_end).toISOString().slice(0, 16) : ''
+  );
+  const [meetingLink, setMeetingLink] = useState(appt.meeting_link || '');
+  const [location, setLocation] = useState(appt.location || '');
+  const [submitting, setSubmitting] = useState(false);
+
+  async function handleSubmit(e) {
+    e.preventDefault();
+    setSubmitting(true);
+
+    await editAppointment(appt.appointment_id, {
+      appointment_type: appointmentType,
+      health_category: healthCategory,
+      scheduled_start: scheduledStart,
+      scheduled_end: scheduledEnd,
+      meeting_link: appointmentType === 'online' ? meetingLink : null,
+      location: appointmentType === 'in-person' ? location : null,
+    });
+
+    onDone();
+  }
+
+  return (
+    <div className="edit-form-card">
+      <h4 className="booking-form-title">Edit Appointment Details</h4>
+
+      <form onSubmit={handleSubmit} className="booking-form">
+
+        <div className="form-row">
+          <div className="form-group">
+            <label className="form-label">Appointment type</label>
+            <select className="form-input" value={appointmentType} onChange={(e) => setAppointmentType(e.target.value)}>
+              <option value="online">Online</option>
+              <option value="in-person">In Person</option>
+            </select>
+          </div>
+          <div className="form-group">
+            <label className="form-label">Health category</label>
+            <select className="form-input" value={healthCategory} onChange={(e) => setHealthCategory(e.target.value)}>
+              <option value="physical">Physical</option>
+              <option value="mental">Mental</option>
+            </select>
+          </div>
+        </div>
+
+        <div className="form-row">
+          <div className="form-group">
+            <label className="form-label">Start time</label>
+            <input type="datetime-local" className="form-input" value={scheduledStart} onChange={(e) => setScheduledStart(e.target.value)} required />
+          </div>
+          <div className="form-group">
+            <label className="form-label">End time</label>
+            <input type="datetime-local" className="form-input" value={scheduledEnd} onChange={(e) => setScheduledEnd(e.target.value)} required />
+          </div>
+        </div>
+
+        {appointmentType === 'online' && (
+          <div className="form-group">
+            <label className="form-label">Meeting link</label>
+            <input type="text" className="form-input" placeholder="https://meet.google.com/..." value={meetingLink} onChange={(e) => setMeetingLink(e.target.value)} />
+          </div>
+        )}
+
+        {appointmentType === 'in-person' && (
+          <div className="form-group">
+            <label className="form-label">Location</label>
+            <input type="text" className="form-input" placeholder="e.g. City Hospital Room 4" value={location} onChange={(e) => setLocation(e.target.value)} />
+          </div>
+        )}
+
+        <button type="submit" className="login-btn" disabled={submitting}>
+          {submitting ? 'Saving...' : 'Save Changes'}
+        </button>
+      </form>
+    </div>
+  );
 }
