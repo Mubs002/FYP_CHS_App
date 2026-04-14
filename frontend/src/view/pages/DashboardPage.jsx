@@ -53,15 +53,20 @@ function MainContent() {
         </p>
       </div>
 
-      {/* three stat cards */}
+      {/* card showing appointment count */}
       <div className="stats-row">
         <div className="stat-card">
           <p className="stat-number">{myAppointments.length}</p>
           <p className="stat-label">Total Appointments</p>
         </div>
         <div className="stat-card">
-          <p className="stat-number">{recentAppointments.length}</p>
-          <p className="stat-label">Recent Activity</p>
+          {/* professionals see pending count patients see their request count */}
+          <p className="stat-number">
+            {user.role === 'professional' ? pendingRequests.length : myRequests.length}
+          </p>
+          <p className="stat-label">
+            {user.role === 'professional' ? 'Pending Requests' : 'My Requests'}
+          </p>
         </div>
         <div className="stat-card">
           <p className="stat-number">{user.role === 'professional' ? '👨‍⚕️' : '🧑'}</p>
