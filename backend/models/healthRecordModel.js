@@ -48,3 +48,14 @@ const createRecord = async (data, file_path) => {
     );
     return result.rows[0];
 };
+
+// i added this so patients can share their records with a professional
+const shareRecord = async (patient_id, professional_id) => {
+    const result = await pool.query(
+        `INSERT INTO consents (patient_id, professional_id, consent_type, is_granted, granted_at)
+         VALUES ($1, $2, 'view_records', true, NOW())
+         RETURNING *`,
+        [patient_id, professional_id]
+    );
+    return result.rows[0];
+};
