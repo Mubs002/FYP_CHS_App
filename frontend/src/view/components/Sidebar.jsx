@@ -52,6 +52,10 @@ export default function Sidebar() {
           <span className="sidebar-link-icon">💚</span>
           Mental Health
         </Link>
+        <Link to="/settings" className={`sidebar-link ${isActive('/settings') ? 'sidebar-link-active' : ''}`}>
+          <span className="sidebar-link-icon">⚙️</span>
+          Settings
+        </Link>
       </nav>
 
       {/* logout buton at the bottom */}
