@@ -21,17 +21,21 @@ const registerUser = async (req, res) => {
             hashedPassword
         );
 
-        // i created a patient profile row automaticaly when the role is patient
-        if (role === 'patient') {
-            await userModel.createPatientProfile(user.user_id);
-        }
-
-        // i created a professional profile row when the role is professional
-        if (role === 'professional') {
-            await userModel.createProfessionalProfile(user.user_id);
+        // i created the profile in a separate try catch so if it fails
+        // it does not show the wrong error message to the user
+        try {
+            if (role === 'patient') {
+                await userModel.createPatientProfile(user.user_id);
+            }
+            if (role === 'professional') {
+                await userModel.createProfessionalProfile(user.user_id);
+            }
+        } catch (profileErr) {
+            console.error('profile creation failed:', profileErr);
         }
 
         res.json(user);
+
     } catch (err) {
         if (err.code === '23505') {
             return res.status(400).send('Email already exists');
