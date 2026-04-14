@@ -17,17 +17,22 @@ export default function DashboardPage() {
 // the right side with the welcome card stats and recent appointments
 function MainContent() {
   const { user } = useAuth();
+  const { appointments, updateStatus, loading, error } = useAppointments();
 
-  // pulling the appointments data using useAppointments from api
-  const { appointments, loading, error } = useAppointments();
-
-  // amount of appointments which belong to user
+  // i filtered appointments that belong to this user
   const myAppointments = appointments.filter(
     (a) => a.patient_id === user.user_id || a.professional_id === user.user_id
   );
 
-  // three recent appoitments to show on the dashboard
-  const recentAppointments = myAppointments.slice(0, 3);
+  // pending requests sent to this professional
+  const pendingRequests = appointments.filter(
+    (a) => a.professional_id === user.user_id && a.status === 'pending'
+  );
+
+  // the patients own requests with their current status
+  const myRequests = appointments.filter(
+    (a) => a.patient_id === user.user_id
+  );
 
   return (
     <main className="dashboard-main">
