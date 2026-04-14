@@ -37,9 +37,38 @@ const createProfessionalProfile = async (userId) => {
     );
 };
 
+// i added this so users can update their name and email from the settings page
+const updateUserProfile = async (userId, first_name, last_name, email) => {
+    const result = await pool.query(
+        `UPDATE users SET first_name = $1, last_name = $2, email = $3 WHERE user_id = $4 RETURNING user_id, first_name, last_name, email, role`,
+        [first_name, last_name, email, userId]
+    );
+    return result.rows[0];
+};
+
+// i added this so users can change their password from the settings page
+const updateUserPassword = async (userId, hashedPassword) => {
+    await pool.query(
+        `UPDATE users SET password_hash = $1 WHERE user_id = $2`,
+        [hashedPassword, userId]
+    );
+};
+
+// i added this to fetch a single user by their id for the settings page
+const getUserById = async (userId) => {
+    const result = await pool.query(
+        `SELECT user_id, first_name, last_name, email, role FROM users WHERE user_id = $1`,
+        [userId]
+    );
+    return result.rows[0];
+};
+
 module.exports = {
     createUser,
     getUserByEmail,
+    getUserById,
+    updateUserProfile,
+    updateUserPassword,
     createPatientProfile,
     createProfessionalProfile
 };
