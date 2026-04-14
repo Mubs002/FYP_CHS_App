@@ -274,4 +274,49 @@ function AddRecordForm({ professionalId, createRecord, onDone }) {
   );
 }
 
+// the form patients use to share their records with a profesional
+function ShareForm({ patientId, shareRecord, onDone, sharedWith }) {
+  const [professionalId, setProfessionalId] = useState('');
+  const [submitting, setSubmitting] = useState(false);
+  const [success, setSuccess] = useState(false);
+
+  async function handleSubmit(e) {
+    e.preventDefault();
+    setSubmitting(true);
+    await shareRecord(patientId, professionalId);
+    setProfessionalId('');
+    setSuccess(true);
+    setSubmitting(false);
+  }
+
+  return (
+    <div className="booking-form-card">
+      <h3 className="booking-form-title">Share Records with a Professional</h3>
+
+      {success && <p className="share-success">Records shared successfully.</p>}
+
+      <form onSubmit={handleSubmit} className="booking-form">
+        <div className="form-group">
+          <label className="form-label">Doctor ID</label>
+          <input type="number" className="form-input" placeholder="Enter the doctor's user ID"
+            value={professionalId} onChange={(e) => setProfessionalId(e.target.value)} required />
+        </div>
+        <button type="submit" className="login-btn" disabled={submitting}>
+          {submitting ? 'Sharing...' : 'Share'}
+        </button>
+      </form>
+
+      {/* shows the list of professionals already shared with */}
+      {sharedWith.length > 0 && (
+        <div className="shared-list">
+          <p className="shared-list-title">Currently shared with:</p>
+          {sharedWith.map((s) => (
+            <p key={s.consent_id} className="shared-item">
+              👨‍⚕️ Dr. {s.professional_name} {s.professional_last_name}
+            </p>
+          ))}
+        </div>
+      )}
+    </div>
+  );
 }
