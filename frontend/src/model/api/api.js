@@ -19,6 +19,12 @@ export const loginUser = (data) => api.post('/login', data);
 export const getAppointments = () => api.get('/appointments');
 export const addAppointment = (data) => api.post('/appointments', data);
 
+// i added this so professionals can edit appointment details
+export const updateAppointment = (id, data) => api.put(`/appointments/${id}`, data);
+
+// i added this so the frontend can send accept or decline to the backend
+export const updateAppointmentStatus = (id, status) => api.put(`/appointments/${id}/status`, { status });
+
 //msgs
 export const getThreads = () => api.get('/threads');
 export const addThread = (data) => api.post('/threads', data);
