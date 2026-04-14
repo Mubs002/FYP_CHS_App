@@ -25,6 +25,12 @@ const registerUser = async (req, res) => {
         if (role === 'patient') {
             await userModel.createPatientProfile(user.user_id);
         }
+
+        // i created a professional profile row when the role is professional
+        if (role === 'professional') {
+            await userModel.createProfessionalProfile(user.user_id);
+        }
+
         res.json(user);
     } catch (err) {
         if (err.code === '23505') {
