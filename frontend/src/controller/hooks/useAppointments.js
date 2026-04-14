@@ -1,5 +1,5 @@
 import { useState, useEffect } from 'react';
-import { getAppointments, addAppointment } from '../../model/api/api';
+import { getAppointments, addAppointment, updateAppointment, updateAppointmentStatus } from '../../model/api/api';
 
 export function useAppointments() {
     const [appointments, setAppointments] = useState([]);
@@ -33,5 +33,31 @@ export function useAppointments() {
         }
     };
 
-    return { appointments, createAppointment, error, loading };
+    // i added this so professionals can edit the appointment details
+    const editAppointment = async (appointmentId, data) => {
+        setError(null);
+        try {
+            const res = await updateAppointment(appointmentId, data);
+            setAppointments((prev) =>
+                prev.map((a) => a.appointment_id === res.data.appointment_id ? res.data : a)
+            );
+        } catch (err) {
+            setError('Could not update appointment.');
+        }
+    };
+
+    // i added this so professionals can accept or decline a request
+    const updateStatus = async (appointmentId, status) => {
+        setError(null);
+        try {
+            const res = await updateAppointmentStatus(appointmentId, status);
+            setAppointments((prev) =>
+                prev.map((a) => a.appointment_id === res.data.appointment_id ? res.data : a)
+            );
+        } catch (err) {
+            setError('Could not update appointment status.');
+        }
+    };
+
+    return { appointments, createAppointment, editAppointment, updateStatus, error, loading };
 }
