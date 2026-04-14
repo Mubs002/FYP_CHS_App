@@ -120,4 +120,162 @@ function AppointmentsContent() {
     </main>
   );
 }
+
+// the booking form used by both patients and professionals
+function BookingForm({ user, createAppointment, onBooked }) {
+  // patients enter a professional id professionals enter a patient id
+  const [otherId, setOtherId] = useState('');
+  const [reason, setReason] = useState('');
+  const [appointmentType, setAppointmentType] = useState('online');
+  const [healthCategory, setHealthCategory] = useState('physical');
+  const [scheduledStart, setScheduledStart] = useState('');
+  const [scheduledEnd, setScheduledEnd] = useState('');
+  const [meetingLink, setMeetingLink] = useState('');
+  const [location, setLocation] = useState('');
+  const [submitting, setSubmitting] = useState(false);
+  const [formError, setFormError] = useState('');
+
+  async function handleSubmit(e) {
+    e.preventDefault();
+    setFormError('');
+    setSubmitting(true);
+
+    try {
+      //set patient and professional id based on who is booking
+      // i also set status to confirmed straight away when a professional books
+      await createAppointment({
+        patient_id: user.role === 'patient' ? user.user_id : otherId,
+        professional_id: user.role === 'professional' ? user.user_id : otherId,
+        appointment_type: appointmentType,
+        health_category: healthCategory,
+        scheduled_start: scheduledStart,
+        scheduled_end: scheduledEnd,
+        reason_for_visit: reason,
+        meeting_link: appointmentType === 'online' ? meetingLink : null,
+        location: appointmentType === 'in-person' ? location : null,
+        booked_by_professional: user.role === 'professional',
+      });
+
+      onBooked();
+    } catch (err) {
+      setFormError('Could not book appointment. Please check the details.');
+    } finally {
+      setSubmitting(false);
+    }
+  }
+
+  return (
+    <div className="booking-form-card">
+      <h3 className="booking-form-title">
+        {user.role === 'professional' ? 'Book Appointment for Patient' : 'Request New Appointment'}
+      </h3>
+
+      {formError && <p className="dashboard-error">{formError}</p>}
+
+      <form onSubmit={handleSubmit} className="booking-form">
+
+        {/*label changes depending on who is booking */}
+        <div className="form-group">
+          <label className="form-label">
+            {user.role === 'professional' ? 'Patient ID' : 'Doctor ID'}
+          </label>
+          <input
+            type="number"
+            className="form-input"
+            placeholder={user.role === 'professional' ? 'Enter patient user ID' : 'Enter doctor user ID'}
+            value={otherId}
+            onChange={(e) => setOtherId(e.target.value)}
+            required
+          />
+        </div>
+
+        <div className="form-group">
+          <label className="form-label">Reason for visit</label>
+          <input
+            type="text"
+            className="form-input"
+            placeholder="e.g. General checkup"
+            value={reason}
+            onChange={(e) => setReason(e.target.value)}
+            required
+          />
+        </div>
+
+        {/* the two dropdowns sit side by side */}
+        <div className="form-row">
+          <div className="form-group">
+            <label className="form-label">Appointment type</label>
+            <select className="form-input" value={appointmentType} onChange={(e) => setAppointmentType(e.target.value)}>
+              <option value="online">Online</option>
+              <option value="in-person">In Person</option>
+            </select>
+          </div>
+          <div className="form-group">
+            <label className="form-label">Health category</label>
+            <select className="form-input" value={healthCategory} onChange={(e) => setHealthCategory(e.target.value)}>
+              <option value="physical">Physical</option>
+              <option value="mental">Mental</option>
+            </select>
+          </div>
+        </div>
+
+        {/* start and end time pickers sit side by side */}
+        <div className="form-row">
+          <div className="form-group">
+            <label className="form-label">Start time</label>
+            <input
+              type="datetime-local"
+              className="form-input"
+              value={scheduledStart}
+              onChange={(e) => setScheduledStart(e.target.value)}
+              required
+            />
+          </div>
+          <div className="form-group">
+            <label className="form-label">End time</label>
+            <input
+              type="datetime-local"
+              className="form-input"
+              value={scheduledEnd}
+              onChange={(e) => setScheduledEnd(e.target.value)}
+              required
+            />
+          </div>
+        </div>
+
+        {/* only showed meeting link if the type is online*/}
+        {appointmentType === 'online' && (
+          <div className="form-group">
+            <label className="form-label">Meeting link</label>
+            <input
+              type="text"
+              className="form-input"
+              placeholder="e.g. https://meet.google.com/..."
+              value={meetingLink}
+              onChange={(e) => setMeetingLink(e.target.value)}
+            />
+          </div>
+        )}
+
+        {/* only showed location field if the type is in person */}
+        {appointmentType === 'in-person' && (
+          <div className="form-group">
+            <label className="form-label">Location</label>
+            <input
+              type="text"
+              className="form-input"
+              placeholder="e.g. City Hospital, Room 4"
+              value={location}
+              onChange={(e) => setLocation(e.target.value)}
+            />
+          </div>
+        )}
+
+        <button type="submit" className="login-btn" disabled={submitting}>
+          {submitting ? 'Booking...' : 'Confirm Booking'}
+        </button>
+      </form>
+    </div>
+  );
+}
 }
