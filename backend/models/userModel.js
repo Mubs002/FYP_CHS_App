@@ -20,7 +20,25 @@ const getUserByEmail = async (email) => {
     return result.rows[0];
 };
 
+// i added this so a patient_profiles gets created when a patient registers
+const createPatientProfile = async (userId) => {
+    await pool.query(
+        `INSERT INTO patient_profiles (patient_id) VALUES ($1)`,
+        [userId]
+    );
+};
+
+// i added this so a professional_profiles gets created when a professional registers
+const createProfessionalProfile = async (userId) => {
+    await pool.query(
+        `INSERT INTO professional_profiles (professional_id, specialism, license_number) VALUES ($1, 'General', 'TEMP001')`,
+        [userId]
+    );
+};
+
 module.exports = {
     createUser,
-    getUserByEmail
+    getUserByEmail,
+    createPatientProfile,
+    createProfessionalProfile
 };
