@@ -14,4 +14,32 @@ export function useHealthRecords(role, userId) {
             fetchShared();
         }
     }, []);
+
+    const fetchRecords = async () => {
+        setLoading(true);
+        setError(null);
+        try {
+            const res = await getHealthRecords(role, userId);
+            setRecords(res.data);
+        } catch (err) {
+            setError('Could not load health records.');
+        } finally {
+            setLoading(false);
+        }
+    };
+
+    const createRecord = async (formData) => {
+        setError(null);
+        try {
+            const res = await addHealthRecord(formData);
+            setRecords((prev) => [res.data, ...prev]);
+        } catch (err) {
+            setError('Could not create health record.');
+        }
+    };
+
+    const shareRecord = async (patientId, professionalId) => {
+        setError(null);
+        try {
+            await shareHealthRecord({ patient_id: patientId, professional_id: professionalId });
 }
