@@ -10,9 +10,24 @@ const getAppointments = async (req, res) => {
     }
 };
 
+// i updated this to pass all the new fields to the model
 const addAppointment = async (req, res) => {
     try {
-        const { patient_id, professional_id, reason_for_visit } = req.body;
+        const {
+            patient_id,
+            professional_id,
+            appointment_type,
+            health_category,
+            scheduled_start,
+            scheduled_end,
+            reason_for_visit,
+            meeting_link,
+            location,
+            booked_by_professional
+        } = req.body;
+
+        // i set status to confirmed if a professional booked it directly
+        const status = booked_by_professional ? 'confirmed' : 'pending';
 
         const appointment = await appointmentModel.createAppointment(
             patient_id,
