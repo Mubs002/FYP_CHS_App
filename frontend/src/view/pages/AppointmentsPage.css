@@ -1,0 +1,179 @@
+/* white card that holds the appointments list */
+.appointments-card {
+  background: white;
+  border-radius: 12px;
+  padding: 28px;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05);
+}
+
+.appointments-card-title {
+  font-size: 17px;
+  font-weight: 700;
+  color: #1a2332;
+  margin: 0 0 20px;
+}
+
+/* each appointment */
+.appt-full-row {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 16px 0;
+  border-bottom: 1px solid #f3f4f6;
+}
+
+.appt-full-row:last-child {
+  border-bottom: none;
+}
+
+.appt-left {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+
+/* the reason for visit */
+.appt-reason {
+  font-size: 15px;
+  font-weight: 600;
+  color: #1a2332;
+  margin: 0;
+}
+
+/* the patient and professional names */
+.appt-names {
+  font-size: 13px;
+  color: #6b7280;
+  margin: 0;
+}
+
+.appt-right {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end;
+  gap: 6px;
+}
+
+/* the date on the right side */
+.appt-date {
+  font-size: 13px;
+  color: #6b7280;
+  white-space: nowrap;
+}
+
+/* small badge showing appointment type */
+.appt-type-badge {
+  background: #CCFBF1;
+  color: #0D9488;
+  font-size: 12px;
+  font-weight: 600;
+  padding: 3px 10px;
+  border-radius: 999px;
+  text-transform: capitalize;
+}
+
+/* status and action buttons on the right */
+.appt-right {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end;
+  gap: 6px;
+}
+
+/* text for type cateegory and date */
+.appt-meta {
+  font-size: 13px;
+  color: #6b7280;
+  margin: 2px 0 0;
+}
+
+/* the join meeting link shown on online appointments */
+.appt-link {
+  font-size: 13px;
+  color: #0D9488;
+  font-weight: 600;
+  text-decoration: none;
+  display: inline-block;
+  margin-top: 4px;
+}
+
+.appt-link:hover {
+  text-decoration: underline;
+}
+
+/* the edit details button for professionals */
+.btn-edit {
+  padding: 6px 14px;
+  background: white;
+  color: #4A90E2;
+  border: 1.5px solid #4A90E2;
+  border-radius: 6px;
+  font-size: 13px;
+  font-weight: 600;
+  cursor: pointer;
+  margin-top: 4px;
+}
+
+.btn-edit:hover {
+  background: #EFF6FF;
+}
+
+/* the edit form card being below the appointments */
+.edit-form-card {
+  background: #F8FAFC;
+  border-radius: 10px;
+  padding: 20px 24px;
+  margin-bottom: 12px;
+  border-left: 4px solid #4A90E2;
+}
+
+/* shown when there are no appointments */
+.no-data-text {
+  font-size: 14px;
+  color: #6b7280;
+  text-align: center;
+  padding: 32px 0;
+}
+
+/* button at the top right for booking */
+.btn-teal-outline {
+  padding: 10px 20px;
+  background: white;
+  color: #0D9488;
+  border: 2px solid #0D9488;
+  border-radius: 8px;
+  font-size: 14px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: background 0.2s color 0.2s;
+}
+
+.btn-teal-outline:hover {
+  background: #0D9488;
+  color: white;
+}
+
+/* the white card that contains the booking form */
+.booking-form-card {
+  background: white;
+  border-radius: 12px;
+  padding: 28px;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05);
+  margin-bottom: 24px;
+  border-left: 4px solid #0D9488;
+}
+
+.booking-form-title {
+  font-size: 17px;
+  font-weight: 700;
+  color: #1a2332;
+  margin: 0 0 20px;
+}
+
+/* the form inputs in a column with a gap */
+.booking-form {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+  max-width: 480px;
+}
