@@ -94,32 +94,45 @@ function MainContent() {
   );
 }
 
-        {/* message if there are no appointments yet */}
-        {!loading && !error && recentAppointments.length === 0 && (
-          <div className="no-appointments">
-            <p>No appointments found.</p>
-            <Link to="/appointments" className="btn-teal-small">Book an appointment</Link>
-          </div>
-        )}
+// section shown to professionals with all pending requests
+function PendingRequestsSection({ requests, updateStatus }) {
+  return (
+    <div className="recent-section">
+      <div className="recent-header">
+        <h3 className="recent-title">Appointment Requests</h3>
+        <Link to="/appointments" className="recent-view-all">View all →</Link>
+      </div>
 
-        {/* looped through recent appointments and displayed each as a row */}
-        {!loading && recentAppointments.length > 0 && (
-          <div className="appointments-list">
-            {recentAppointments.map((appt) => (
-              <div className="appointment-row" key={appt.appointment_id}>
-                <div className="appt-info">
-                  <p className="appt-reason">{appt.reason_for_visit}</p>
-                  <p className="appt-names">
-                    {appt.patient_name} → {appt.doctor_name}
-                  </p>
-                </div>
-                <div className="appt-date">
-                  {new Date(appt.scheduled_start).toLocaleDateString()}
-                </div>
-              </div>
-            ))}
+      {requests.length === 0 && (
+        <p className="no-data-text">No pending requests.</p>
+      )}
+
+      {/* each pending request row with accept and decline buttons */}
+      {requests.map((appt) => (
+        <div className="appointment-row" key={appt.appointment_id}>
+          <div className="appt-info">
+            <p className="appt-reason">{appt.reason_for_visit}</p>
+            <p className="appt-names">From: {appt.patient_name} · {appt.appointment_type}</p>
           </div>
-        )}
+          <div className="appt-actions">
+            {/* i called updateStatus with confirmed when the button is clicked */}
+            <button
+              className="btn-accept"
+              onClick={() => updateStatus(appt.appointment_id, 'confirmed')}
+            >
+              Accept
+            </button>
+            <button
+              className="btn-decline"
+              onClick={() => updateStatus(appt.appointment_id, 'cancelled')}
+            >
+              Decline
+            </button>
+          </div>
+        </div>
+      ))}
+    </div>
+  );
       </div>
 
     </main>
