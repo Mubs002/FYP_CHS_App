@@ -12,3 +12,16 @@ const getRecordsByPatient = async (patient_id) => {
     );
     return result.rows;
 };
+
+// i fetched all records created by a specific professional
+const getRecordsByProfessional = async (professional_id) => {
+    const result = await pool.query(
+        `SELECT hr.*, u.first_name AS patient_name
+         FROM health_records hr
+         LEFT JOIN users u ON hr.patient_id = u.user_id
+         WHERE hr.created_by_professional_id = $1
+         ORDER BY hr.record_date DESC`,
+        [professional_id]
+    );
+    return result.rows;
+};
