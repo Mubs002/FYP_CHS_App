@@ -51,6 +51,8 @@ function MainContent() {
         <p className="welcome-text">
           Here is a summary of your health activity on CHS.
         </p>
+        {/* i showed the user id so patients and professionals can share it with each other */}
+        <p className="welcome-user-id">Your ID: <strong>{user.user_id}</strong></p>
       </div>
 
       {/* card showing appointment count */}

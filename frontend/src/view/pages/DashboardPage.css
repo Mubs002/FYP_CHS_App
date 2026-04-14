@@ -160,7 +160,15 @@
 .welcome-text {
   font-size: 15px;
   opacity: 0.9;
+  margin: 0 0 8px;
+}
+
+/* the user id shown at the bottom of the welcome card */
+.welcome-user-id {
+  font-size: 13px;
+  opacity: 0.85;
   margin: 0;
+  color: white;
 }
 
 /* the cards sit in a row (totel appointments, recent activity, role) */
