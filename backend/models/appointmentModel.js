@@ -26,6 +26,23 @@ const createAppointment = async (patient_id, professional_id, appointment_type, 
 
     return result.rows[0];
 };
+
+// i added this so professionals can edit the appointment details
+const updateAppointment = async (appointment_id, data) => {
+    const result = await pool.query(
+        `UPDATE appointments SET
+            appointment_type = $1,
+            health_category = $2,
+            scheduled_start = $3,
+            scheduled_end = $4,
+            meeting_link = $5,
+            location = $6
+        WHERE appointment_id = $7 RETURNING *`,
+        [data.appointment_type, data.health_category, data.scheduled_start, data.scheduled_end, data.meeting_link, data.location, appointment_id]
+    );
+
+    return result.rows[0];
+};
     );
 
     return result.rows[0];
