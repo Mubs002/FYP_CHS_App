@@ -77,7 +77,63 @@ const loginUser = async (req, res) => {
     }
 };
 
+// i added this so the settings page can load the users current info
+const getUser = async (req, res) => {
+    try {
+        const { id } = req.params;
+        const user = await userModel.getUserById(id);
+        if (!user) return res.status(404).send('User not found');
+        res.json(user);
+    } catch (err) {
+        console.error(err);
+        res.status(500).send('Error fetching user');
+    }
+};
+
+// i added this so users can update their name and email
+const updateProfile = async (req, res) => {
+    try {
+        const { id } = req.params;
+        const { first_name, last_name, email } = req.body;
+        const user = await userModel.updateUserProfile(id, first_name, last_name, email);
+        res.json(user);
+    } catch (err) {
+        if (err.code === '23505') {
+            return res.status(400).send('Email already in use');
+        }
+        console.error(err);
+        res.status(500).send('Error updating profile');
+    }
+};
+
+// i added this so users can change their password
+const updatePassword = async (req, res) => {
+    try {
+        const { id } = req.params;
+        const { current_password, new_password } = req.body;
+
+        // i fetched the user by id so i can check the current password is correct
+        const user = await userModel.getUserById(id);
+        const fullUser = await userModel.getUserByEmail(user.email);
+        const valid = await bcrypt.compare(current_password, fullUser.password_hash);
+
+        if (!valid) {
+            return res.status(401).send('Current password is incorrect');
+        }
+
+        const hashed = await bcrypt.hash(new_password, 10);
+        await userModel.updateUserPassword(id, hashed);
+        res.json({ message: 'Password updated' });
+    } catch (err) {
+        console.error(err);
+        res.status(500).send('Error updating password');
+    }
+};
+
 module.exports = {
     registerUser,
-    loginUser
+    loginUser,
+    getUser,
+    updateProfile,
+    updatePassword
 };
