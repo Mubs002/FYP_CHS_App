@@ -14,13 +14,18 @@ const getAllAppointments = async () => {
             return result.rows;
 };
 
-const createAppointment = async (patient_id, professional_id, reason_for_visit) => {
+// i updated this to accept all the appointment fields from the form
+const createAppointment = async (patient_id, professional_id, appointment_type, health_category, scheduled_start, scheduled_end, reason_for_visit, meeting_link, location, status) => {
     const result = await pool.query(
         `INSERT INTO appointments
-            (patient_id, professional_id, appointment_type, health_category, scheduled_start, scheduled_end, reason_for_visit)
-            VALUES ($1, $2, 'online', 'physical', NOW(), NOW() + INTERVAL '30 minutes', $3)
+            (patient_id, professional_id, appointment_type, health_category, scheduled_start, scheduled_end, reason_for_visit, meeting_link, location, status)
+            VALUES ($1, $2, $3, $4, $5, $6, $7, $8, $9, $10)
             RETURNING *`,
-            [patient_id, professional_id, reason_for_visit]
+            [patient_id, professional_id, appointment_type, health_category, scheduled_start, scheduled_end, reason_for_visit, meeting_link, location, status]
+    );
+
+    return result.rows[0];
+};
     );
 
     return result.rows[0];
