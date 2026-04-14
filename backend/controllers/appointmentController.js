@@ -32,7 +32,14 @@ const addAppointment = async (req, res) => {
         const appointment = await appointmentModel.createAppointment(
             patient_id,
             professional_id,
-            reason_for_visit
+            appointment_type,
+            health_category,
+            scheduled_start,
+            scheduled_end,
+            reason_for_visit,
+            meeting_link || null,
+            location || null,
+            status
         );
 
         res.json(appointment);
@@ -42,7 +49,35 @@ const addAppointment = async (req, res) => {
     }
 };
 
+// i added this so a professional can edit the appointment time and link
+const updateAppointment = async (req, res) => {
+    try {
+        const { id } = req.params;
+        const appointment = await appointmentModel.updateAppointment(id, req.body);
+        res.json(appointment);
+    } catch (err) {
+        console.error(err);
+        res.status(500).send('Error updating appointment');
+    }
+};
+
+// i added this so professionals can accept or decline a request
+const updateStatus = async (req, res) => {
+    try {
+        const { id } = req.params;
+        const { status } = req.body;
+
+        const appointment = await appointmentModel.updateAppointmentStatus(id, status);
+        res.json(appointment);
+    } catch (err) {
+        console.error(err);
+        res.status(500).send('Error updating appointment status');
+    }
+};
+
 module.exports = {
     getAppointments,
-    addAppointment
+    addAppointment,
+    updateAppointment,
+    updateStatus
 };
