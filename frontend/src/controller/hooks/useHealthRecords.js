@@ -42,4 +42,20 @@ export function useHealthRecords(role, userId) {
         setError(null);
         try {
             await shareHealthRecord({ patient_id: patientId, professional_id: professionalId });
+            // i refetched the shared list after sharing so it updates straight away
+            fetchShared();
+        } catch (err) {
+            setError('Could not share health record.');
+        }
+    };
+
+    const fetchShared = async () => {
+        try {
+            const res = await getSharedProfessionals(userId);
+            setSharedWith(res.data);
+        } catch (err) {
+        }
+    };
+
+    return { records, sharedWith, loading, error, createRecord, shareRecord };
 }
