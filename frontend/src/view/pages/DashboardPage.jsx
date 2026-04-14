@@ -74,12 +74,16 @@ function MainContent() {
         </div>
       </div>
 
-      {/* recent appointments section */}
-      <div className="recent-section">
-        <div className="recent-header">
-          <h3 className="recent-title">Recent Appointments</h3>
-          <Link to="/appointments" className="recent-view-all">View all →</Link>
-        </div>
+      {loading && <p className="dashboard-loading">Loading...</p>}
+      {error && <p className="dashboard-error">{error}</p>}
+
+      {/* professionals see incoming requests with accept and decline buttons */}
+      {user.role === 'professional' && (
+        <PendingRequestsSection
+          requests={pendingRequests}
+          updateStatus={updateStatus}
+        />
+      )}
 
         {/* loading message while the data is being fetched */}
         {loading && <p className="dashboard-loading">Loading appointments...</p>}
