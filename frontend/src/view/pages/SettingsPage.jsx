@@ -73,3 +73,39 @@ function ProfileSection({ userId }) {
       setSaving(false);
     }
   }
+
+  return (
+    <div className="settings-card">
+      <h3 className="settings-card-title">Personal Information</h3>
+      <p className="settings-card-subtitle">Update your name and email address</p>
+
+      {success && <p className="settings-success">{success}</p>}
+      {error && <p className="dashboard-error">{error}</p>}
+
+      <form onSubmit={handleSubmit} className="booking-form">
+        <div className="form-row">
+          <div className="form-group">
+            <label className="form-label">First name</label>
+            <input type="text" className="form-input" value={firstName}
+              onChange={(e) => setFirstName(e.target.value)} required />
+          </div>
+          <div className="form-group">
+            <label className="form-label">Last name</label>
+            <input type="text" className="form-input" value={lastName}
+              onChange={(e) => setLastName(e.target.value)} required />
+          </div>
+        </div>
+
+        <div className="form-group">
+          <label className="form-label">Email address</label>
+          <input type="email" className="form-input" value={email}
+            onChange={(e) => setEmail(e.target.value)} required />
+        </div>
+
+        <button type="submit" className="login-btn settings-btn" disabled={saving}>
+          {saving ? 'Saving...' : 'Save Changes'}
+        </button>
+      </form>
+    </div>
+  );
+}
