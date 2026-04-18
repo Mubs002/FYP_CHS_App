@@ -7,7 +7,8 @@ export function AuthProvider({ children }) {
         const token = localStorage.getItem('token');
         const role = localStorage.getItem('role');
         const user_id = localStorage.getItem('user_id');
-        return token ? { token, role, user_id } : null;
+        // i converted user_id to a number because localstorage saves everything as a string
+        return token ? { token, role, user_id: Number(user_id) } : null;
     });
 
     const login = (data) => {

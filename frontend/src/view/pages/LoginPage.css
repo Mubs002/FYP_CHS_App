@@ -1,0 +1,164 @@
+/* the ful login page takes up the whole screen height */
+.login-page {
+  min-height: 100vh;
+  background: #F8FAFC;
+  display: flex;
+  flex-direction: column;
+}
+
+/* teal bar across the top of the page */
+.login-header {
+  background: linear-gradient(to right, #00D4AA, #4A90E2);
+  padding: 18px 40px;
+}
+
+/* the back arrow*/
+.login-back-link {
+  color: white;
+  text-decoration: none;
+  font-size: 14px;
+  font-weight: 500;
+  opacity: 0.9;
+}
+
+.login-back-link:hover {
+  opacity: 1;
+}
+
+/* centers the white card on the page vertically and horizontally*/
+.login-card-wrapper {
+  flex: 1;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 40px 20px;
+}
+
+/*white card that has the login form */
+.login-card {
+  background: white;
+  border-radius: 16px;
+  padding: 48px 40px;
+  width: 100%;
+  max-width: 420px;
+  box-shadow: 0 4px 24px rgba(0, 0, 0, 0.08);
+  text-align: center;
+}
+
+/*shield icon at the top of the card */
+.login-icon {
+  width: 64px;
+  height: 64px;
+  background: #CCFBF1;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin: 0 auto 20px;
+}
+
+.login-title {
+  font-size: 26px;
+  font-weight: 800;
+  color: #1a2332;
+  margin: 0 0 8px;
+}
+
+.login-subtitle {
+  font-size: 14px;
+  color: #6b7280;
+  margin: 0 0 28px;
+}
+
+/* red error box shown when login fails */
+.login-error {
+  background: #FEF2F2;
+  border: 1px solid #FECACA;
+  color: #DC2626;
+  border-radius: 8px;
+  padding: 12px 16px;
+  font-size: 14px;
+  margin-bottom: 20px;
+  text-align: left;
+}
+
+.login-form {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+  text-align: left;
+}
+
+/* each label and input are grouped togeter */
+.form-group {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+
+.form-label {
+  font-size: 14px;
+  font-weight: 600;
+  color: #374151;
+}
+
+/* text input */
+.form-input {
+  padding: 12px 14px;
+  border: 1.5px solid #e5e7eb;
+  border-radius: 8px;
+  font-size: 15px;
+  color: #CCFBF1;
+  outline: none;
+  transition: border-color 0.2s;
+}
+
+
+/* the main sign in button */
+.login-btn {
+  padding: 14px;
+  background: #0D9488;
+  color: white;
+  border: none;
+  border-radius: 8px;
+  font-size: 15px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: background 0.2s;
+  margin-top: 4px;
+}
+
+.login-btn:hover {
+  background: #0F766E;
+}
+
+/* grayed out when is in progress */
+.login-btn:disabled {
+  background: #9ca3af;
+  cursor: not-allowed;
+}
+
+/* text with the register link */
+.login-register-link {
+  font-size: 14px;
+  color: #6b7280;
+  margin: 24px 0 0;
+}
+
+/* teal coloured clickable link inside the register text */
+.login-link {
+  color: #0D9488;
+  font-weight: 600;
+  text-decoration: none;
+}
+
+.login-link:hover {
+  text-decoration: underline;
+}
+
+@media (max-width: 480px) {
+  /* made the card take more of the screen on small devices */
+  .login-card {
+    padding: 36px 24px;
+  }
+}

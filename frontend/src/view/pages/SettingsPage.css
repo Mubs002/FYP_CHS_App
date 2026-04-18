@@ -1,0 +1,39 @@
+/* each settings section is a white card */
+.settings-card {
+  background: white;
+  border-radius: 12px;
+  padding: 28px 32px;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05);
+  margin-bottom: 24px;
+  max-width: 600px;
+}
+
+.settings-card-title {
+  font-size: 17px;
+  font-weight: 700;
+  color: #1a2332;
+  margin: 0 0 4px;
+}
+
+/* the small description text below each section title */
+.settings-card-subtitle {
+  font-size: 13px;
+  color: #6b7280;
+  margin: 0 0 24px;
+}
+
+/* after saving success messagee*/
+.settings-success {
+  background: #DCFCE7;
+  color: #16A34A;
+  border-radius: 8px;
+  padding: 10px 14px;
+  font-size: 14px;
+  font-weight: 600;
+  margin-bottom: 16px;
+}
+
+/* i limited the save button width so it doesnt stretch across the full card */
+.settings-btn {
+  max-width: 200px;
+}

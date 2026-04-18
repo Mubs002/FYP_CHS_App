@@ -14,18 +14,46 @@ const getAllAppointments = async () => {
             return result.rows;
 };
 
-const createAppointment = async (patient_id, professional_id, reason_for_visit) => {
+// i updated this to accept all the appointment fields from the form
+const createAppointment = async (patient_id, professional_id, appointment_type, health_category, scheduled_start, scheduled_end, reason_for_visit, meeting_link, location, status) => {
     const result = await pool.query(
         `INSERT INTO appointments
-            (patient_id, professional_id, appointment_type, health_category, scheduled_start, scheduled_end, reason_for_visit)
-            VALUES ($1, $2, 'online', 'physical', NOW(), NOW() + INTERVAL '30 minutes', $3)
+            (patient_id, professional_id, appointment_type, health_category, scheduled_start, scheduled_end, reason_for_visit, meeting_link, location, status)
+            VALUES ($1, $2, $3, $4, $5, $6, $7, $8, $9, $10)
             RETURNING *`,
-            [patient_id, professional_id, reason_for_visit]
+            [patient_id, professional_id, appointment_type, health_category, scheduled_start, scheduled_end, reason_for_visit, meeting_link, location, status]
+    );
+
+    return result.rows[0];
+};
+
+// i added this so professionals can edit the appointment details
+const updateAppointment = async (appointment_id, data) => {
+    const result = await pool.query(
+        `UPDATE appointments SET
+            appointment_type = $1,
+            health_category = $2,
+            scheduled_start = $3,
+            scheduled_end = $4,
+            meeting_link = $5,
+            location = $6
+        WHERE appointment_id = $7 RETURNING *`,
+        [data.appointment_type, data.health_category, data.scheduled_start, data.scheduled_end, data.meeting_link, data.location, appointment_id]
+    );
+
+    return result.rows[0];
+};
+
+// i added this so professionals can accept or decline an appointment request
+const updateAppointmentStatus = async (appointment_id, status) => {
+    const result = await pool.query(
+        `UPDATE appointments SET status = $1 WHERE appointment_id = $2 RETURNING *`,
+        [status, appointment_id]
     );
 
     return result.rows[0];
 };
 
 module.exports = {
-    getAllAppointments, createAppointment
+    getAllAppointments, createAppointment, updateAppointment, updateAppointmentStatus
 };

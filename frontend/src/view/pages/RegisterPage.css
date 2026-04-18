@@ -1,0 +1,202 @@
+/* the full register page takes up the whole screen height */
+.register-page {
+  min-height: 100vh;
+  background: #F8FAFC;
+  display: flex;
+  flex-direction: column;
+}
+
+/* teal bar across the top */
+.register-header {
+  background: linear-gradient(to right, #00D4AA, #4A90E2);
+  padding: 18px 40px;
+}
+
+/* the back arrow link in header */
+.register-back-link {
+  color: white;
+  text-decoration: none;
+  font-size: 14px;
+  font-weight: 500;
+  opacity: 0.9;
+}
+
+.register-back-link:hover {
+  opacity: 1;
+}
+
+/* centers the white card on the page vertically and horizontally */
+.register-card-wrapper {
+  flex: 1;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 40px 20px;
+}
+
+/*the register form */
+.register-card {
+  background: white;
+  border-radius: 16px;
+  padding: 48px 40px;
+  width: 100%;
+  max-width: 480px;
+  box-shadow: 0 4px 24px rgba(0, 0, 0, 0.08);
+  text-align: center;
+}
+
+/* shield icon*/
+.register-icon {
+  width: 64px;
+  height: 64px;
+  background: #CCFBF1;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin: 0 auto 20px;
+}
+
+.register-title {
+  font-size: 26px;
+  font-weight: 800;
+  color: #1a2332;
+  margin: 0 0 8px;
+}
+
+.register-subtitle {
+  font-size: 14px;
+  color: #6b7280;
+  margin: 0 0 24px;
+}
+
+/* the two role buttons */
+.role-toggle {
+  display: inline-flex;
+  background: #F3F4F6;
+  border-radius: 8px;
+  padding: 4px;
+  margin-bottom: 24px;
+}
+
+/* eeach role button*/
+.role-toggle-btn {
+  padding: 8px 24px;
+  border: none;
+  border-radius: 6px;
+  font-size: 14px;
+  font-weight: 600;
+  cursor: pointer;
+  background: transparent;
+  color: #6b7280;
+  transition: background 0.2s color 0.2s;
+}
+
+/* active role button */
+.role-toggle-active {
+  background: white;
+  color: #0D9488;
+  box-shadow: 0 1px 4px rgba(0, 0, 0, 0.1);
+}
+
+/* red error box shown when registration fails */
+.register-error {
+  background: #FEF2F2;
+  border: 1px solid #FECACA;
+  color: #DC2626;
+  border-radius: 8px;
+  padding: 12px 16px;
+  font-size: 14px;
+  margin-bottom: 20px;
+  text-align: left;
+}
+
+.register-form {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+  text-align: left;
+}
+
+/* puts first name and last name side by side */
+.form-row {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 16px;
+}
+
+.form-group {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+
+.form-label {
+  font-size: 14px;
+  font-weight: 600;
+  color: #374151;
+}
+
+/* text input box */
+.form-input {
+  padding: 12px 14px;
+  border: 1.5px solid #e5e7eb;
+  border-radius: 8px;
+  font-size: 15px;
+  color: #CCFBF1;
+  outline: none;
+  transition: border-color 0.2s;
+}
+
+/* thee main create account button */
+.register-btn {
+  padding: 14px;
+  background: #0D9488;
+  color: white;
+  border: none;
+  border-radius: 8px;
+  font-size: 15px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: background 0.2s;
+  margin-top: 4px;
+}
+
+.register-btn:hover {
+  background: #0F766E;
+}
+
+/* grayed out when in progress */
+.register-btn:disabled {
+  background: #9ca3af;
+  cursor: not-allowed;
+}
+
+/* below the form, the sign in link */
+.register-login-link {
+  font-size: 14px;
+  color: #6b7280;
+  margin: 24px 0 0;
+}
+
+/* teal coloured clickable link inside the sign in text */
+.register-link {
+  color: #0D9488;
+  font-weight: 600;
+  text-decoration: none;
+}
+
+.register-link:hover {
+  text-decoration: underline;
+}
+
+@media (max-width: 480px) {
+  .register-card {
+    padding: 36px 24px;
+  }
+
+  /* i stacked the name fields on small screens */
+  .form-row {
+    grid-template-columns: 1fr;
+  }
+}
