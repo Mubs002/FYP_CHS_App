@@ -5,101 +5,6 @@
   font-family: 'Segoe UI', system-ui, sans-serif;
 }
 
-/* SIDEBAR */
-
-.sidebar {
-  width: 220px;
-  min-width: 220px;
-  background: #1a2332;
-  display: flex;
-  flex-direction: column;
-  padding: 24px 0;
-}
-
-/* the chs logo */
-.sidebar-logo {
-  display: flex;
-  align-items: center;
-  gap: 10px;
-  padding: 0 20px 28px;
-}
-
-/* the teal circle behind chs icon */
-.sidebar-logo-icon {
-  width: 36px;
-  height: 36px;
-  background: #0D9488;
-  border-radius: 8px;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-}
-
-.sidebar-logo-text {
-  color: white;
-  font-size: 18px;
-  font-weight: 800;
-  letter-spacing: 1px;
-}
-
-.sidebar-nav {
-  display: flex;
-  flex-direction: column;
-  flex: 1;
-  gap: 4px;
-  padding: 0 12px;
-}
-
-/* each nav link in the sidebar */
-.sidebar-link {
-  display: flex;
-  align-items: center;
-  gap: 10px;
-  padding: 10px 12px;
-  border-radius: 8px;
-  color: #9ca3af;
-  text-decoration: none;
-  font-size: 14px;
-  font-weight: 500;
-  transition: background 0.2s color 0.2s;
-}
-
-.sidebar-link:hover {
-  background: rgba(255, 255, 255, 0.07);
-  color: white;
-}
-
-/* highlighted link in teal so user knows which page they are on*/
-.sidebar-link-active {
-  background: rgba(13, 148, 136, 0.2);
-  color: #2DD4BF;
-}
-
-.sidebar-link-icon {
-  font-size: 16px;
-}
-
-/* logout buton */
-.sidebar-logout {
-  display: flex;
-  align-items: center;
-  gap: 10px;
-  padding: 10px 24px;
-  background: transparent;
-  border: none;
-  color: #9ca3af;
-  font-size: 14px;
-  font-weight: 500;
-  cursor: pointer;
-  text-align: left;
-  transition: color 0.2s;
-  margin-top: 8px;
-}
-
-.sidebar-logout:hover {
-  color: #f87171;
-}
-
 /* main content */
 
 .dashboard-main {
@@ -397,26 +302,6 @@
   /* i stacked the sidebar above the content on small screens */
   .dashboard-layout {
     flex-direction: column;
-  }
-
-  .sidebar {
-    width: 100%;
-    min-width: unset;
-    flex-direction: row;
-    flex-wrap: wrap;
-    padding: 12px;
-    gap: 8px;
-  }
-
-  .sidebar-logo {
-    padding-bottom: 0;
-    width: 100%;
-  }
-
-  .sidebar-nav {
-    flex-direction: row;
-    flex-wrap: wrap;
-    padding: 0;
   }
 
   .dashboard-main {
